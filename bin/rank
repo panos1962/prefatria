@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+
+# Το πρόγραμμα "rank" διαβάζει στοιχεία βαθμολογίας και παράγει νέα στοιχεία βαθμολογίας.
+# Πιο συγκεκριμένα, το πρόγραμμα διαβάζει γραμμές της μορφής:
+#
+#	Κωδικός παρτίδας
+#	Πλήθος παιγμένων διανομών παρτίδας
+#	Login name παίκτη
+#	Καπίκια παρτίδας
+#
+# και παράγει στοιχεία της μορφής:
+#
+#	Login name παίκτη
+#	Μέσος όρος καπικίων ανά παιγμένη διανομή
+#	Συνολικό πλήθος παιγμένων διανομών
+#
+# Αν θέλουμε μπορούμε να περιοριστούμε σε κάποιο πλήθος διανομών οπότε ο υπολογισμός
+# για κάθε παίκτη θα σταματά μόλις ο παίκτης συμπληρώσει ικανό πλήθος διανομών. Για
+# το σκοπό αυτό χρησιμοποιούμε την option -d με την οποία καθορίζουμε το πλήθος των
+# ικανών διανομών.
+#
+# Το πρόγραμμα μπορεί να ενημερώνει απευθείας την database θέτοντας την παράμετρο
+# "ΒΑΘΜΟΛΟΓΙΑ" για τους παίκτες. Για να μην έχουμε περιττές ενημερώσεις, μπορούμε να
+# παράσχουμε τις υπάρχουσες βαθμολογίες προκειμένου να ενημερωθεί η database μόνο με
+# τις διαφορές.
+
+progname="prefadoros::`basename $0`"
+
+[ -n "${PREFADOROS}" ] || {
+	echo "${progname}: PREFADOROS: environment variable not set" >&2
+	exit 2
+}
+
+[ -d "${PREFADOROS}" ] || {
+	echo "${progname}: ${PREFADOROS}: directory not found" >&2
+	exit 2
+}
+
+usage() {
+	echo "usage: ${progname} [-d διανομές] [-u] [-l logfile] [files...]" >&2
+	exit 1
+}
+
+ikanes=
+update=
+logfile=
+erru=
+errs=
+
+while getopts ":d:ul:" arg
+do
+	case "${arg}" in
+	d)
+		if [ \( "${OPTARG}" -eq "${OPTARG}" \) -a \( "${OPTARG}" -ge 0 \) ] 2>/dev/null; then
+			ikanes="${OPTARG}"
+			opts="${opts} -d ${OPTARG}"
+		else
+			echo "${progname}: ${OPTARG}: λανθασμένο πλήθος ικανών διανομών" >&2
+			erru="yes"
+		fi
+		;;
+	u)
+		update="yes"
+		;;
+	l)
+		logfile="${OPTARG}"
+		[ -e "${logfile}" ] && {
+			echo "${progname}: ${logfile}: file exists" >&2
+			errs="yes"
+		}
+		;;
+	\?)
+		echo "${progname}: ${OPTARG}: invalid option" >&2
+		erru="yes"
+		;;
+	esac
+done
+
+[ -n "${erru}" ] && usage
+[ -n "${errs}" ] && exit 2
+
+shift `expr ${OPTIND} - 1`
+
+exec awk -v ikanes="${ikanes}" -v update="${update}" -v logfile="${logfile}" -f "${PREFADOROS}/src/stats/rank.awk" $*

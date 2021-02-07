@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+progname="prefadoros::`basename $0`"
+
+[ -n "${PREFADOROS}" ] || {
+	echo "${progname}: PREFADOROS: environment variable not set" >&2
+	exit 2
+}
+
+[ -d "${PREFADOROS}" ] || {
+	echo "${progname}: ${PREFADOROS}: directory not found" >&2
+	exit 2
+}
+
+usage() {
+	echo "usage: ${progname} [OPTIONS] [ARGS...]" >&2
+	exit 1
+}
+
+while getopts ":" arg
+do
+	case "${arg}" in
+	\?)
+		echo "${progname}: ${OPTARG}: invalid option" >&2
+		errs="yes"
+		;;
+	esac
+done
+
+[ -n "${errs}" ] && usage
+
+shift `expr ${OPTIND} - 1`
+
+exec ls -l "${PREFADOROS}/bin"

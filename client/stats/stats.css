@@ -1,0 +1,265 @@
+body {
+	overflow-y: scroll;
+	max-width: none;
+}
+
+#mera {
+	background-color: #FFFFFF;
+	max-width: 600px;
+}
+
+#mera .ct-bar {
+    stroke-width: 20px;
+}
+
+.epilogi {
+	position: relative;
+	margin: 4px;
+	padding: 2px 4px;
+	cursor: pointer;
+	background-color: rgb(255, 248, 223);
+
+	border-style: dotted;
+	border-width: 1px;
+	border-color: transparent;
+	border-radius: 3px;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;  
+}
+
+.epilogiNo {
+	color: #444444;
+}
+
+.epilogiYes {
+	color: #000000;
+}
+
+.epilogi:hover {
+	border-color: rgb(255, 223, 169);
+}
+
+.epilogiNo:before {
+	content: '\2610';
+	margin: 0 4px 0 0;
+}
+
+.epilogiYes {
+	text-shadow: 1px 0px 0px #000000
+}
+
+.epilogiYes:before {
+	content: '\2611';
+	margin: 0 4px 0 0;
+}
+
+.pliktroContainer {
+	width: 60px;
+	padding: 6px;
+}
+
+.pliktro {
+	width: 100%;
+	cursor: pointer;
+}
+
+.katataxi th {
+	background-color: #FFFFF9;
+}
+
+.katataxi td, th {
+	padding: 2px 4px;
+	white-space: nowrap;
+}
+
+.headerSort {
+	cursor: ns-resize;
+}
+
+.katataxiLogin {
+	min-width: 150px;
+	max-width: 150px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-weight: bold;
+}
+
+.katataxiLoginEgo {
+	color: #0202A9;
+	background-color: yellow;
+}
+
+.isozigio {
+	text-align: right;
+	font-weight: bold;
+}
+
+.isozigioThetiko {
+	background-color: rgb(210, 255, 210);
+}
+
+.isozigioArnitiko {
+	background-color: rgb(255, 227, 227);
+}
+
+#dianomesMin {
+	margin: 4px;
+	width: 8em;
+}
+
+.sorter {
+	background-color: orange !important;
+}
+
+.arithmisi {
+	position: relative;
+	text-align: right;
+}
+
+#pektesClear {
+	position: absolute;
+	top: 2px;
+	right: 2px;
+
+	width: 20px;
+	cursor: pointer;
+}
+
+.katataxiRow {
+	cursor: pointer;
+}
+
+.katataxiRowZoom {
+	position: absolute;
+	padding: 10px;
+
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 10px;
+	border-color: #FBD898;
+
+	background-color: #FFFFE0;
+}
+
+.katataxiZoomData {
+	display: inline-block;
+}
+
+.katataxiZoomLeft {
+	text-align: right;
+	font-style: italic;
+}
+
+.katataxiZoomLeft:after {
+	content: ':';
+	font-style: normal;
+}
+
+.katataxiZoomRight {
+	text-align: left;
+	color: #000066;
+}
+
+.katataxiZoomLeft:before {
+	content: ' ';
+}
+
+.katataxiZoomCharts {
+	display: inline-block;
+	position: relative;
+	top: -10px;
+}
+
+.katataxiZoomChartDianomes {
+	left: 8px;
+}
+
+.katataxiZoomChartKatataxi {
+	right: -8px;
+}
+
+.katataxiZoomChartDianomes,.katataxiZoomChartKatataxi .ct-label {
+	text-shadow: 1px 1px 2px #000000;
+}
+
+.katataxiZoomChartKapikia {
+	position: relative;
+	top: 22px;
+}
+
+/* aap: από το "αγορά", "άμυνα", "πάσο" */
+
+.aapAgora {
+	fill: #4B9237;
+	stroke: #316023;
+}
+
+.aapAmina {
+	fill: #C14B2A;
+	stroke: #B03A3A;
+}
+
+.aapPaso {
+	fill: #D6B502;
+	stroke: #847734;
+}
+
+/* pdt: από το "πρώτος", "δεύτερος", "τρίτος" */
+
+.pdtProtos {
+	fill: #164F91;
+	stroke: #014598;
+}
+
+.pdtDefteros {
+	fill: #9DB63F;
+	stroke: #756F2F;
+}
+
+.pdtTritos {
+	fill: #DA3939;
+	stroke: #A01A9B;
+}
+
+.ct-label {
+	fill: rgb(247, 253, 255);
+	color: #111111;
+	font-size: 0.80rem;
+	font-family: sans-serif
+}
+
+.ct-grid {
+	stroke: rgba(0, 0, 0, 0.40);
+}
+
+.ct-chart-bar {
+	padding: 0px 0 0px 20px;
+}
+
+#stisimo {
+	max-width: 600px;
+}
+
+.stisimoEpikefalida {
+	text-align: center;
+	font-weight: bold;
+	color: midnightblue;
+}
+
+#stisimoMinas .ct-bar {
+	stroke-width: 4%;
+	stroke: #92794A;
+}
+
+#stisimoMera .ct-bar {
+	stroke-width: 6%;
+	stroke: #46756F;
+}
+
+#stisimoOra .ct-bar {
+	stroke-width: 2%;
+	stroke: #D0B329;
+}

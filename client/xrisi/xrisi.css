@@ -1,0 +1,15 @@
+#ofelimo {
+	margin: 10px;
+}
+
+.xrisi_titlos {
+	font-weight: bold;
+	font-size: 120%;
+	padding: 10px 0 10px 0;
+}
+
+.xrisi_paragrafos {
+	line-height: 150%;
+	text-align: justify;
+	padding: 10px 0 0 0;
+}

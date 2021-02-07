@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+progname=`basename $0`
+
+[ -n "${PREFADOROS}" ] || {
+	echo "${progname}: PREFADOROS: environment variable not set" >&2
+	exit 2
+}
+
+[ -d "${PREFADOROS}" ] || {
+	echo "${progname}: ${PREFADOROS}: directory not found" >&2
+	exit 2
+}
+
+usage() {
+	echo "usage: ${progname} program
+       ${progname} list" >&2
+	exit 1
+}
+
+while getopts ":" arg
+do
+	case "${arg}" in
+	\?)
+		echo "${progname}: ${OPTARG}: invalid option" >&2
+		errs="yes"
+		;;
+	esac
+done
+
+[ -n "${errs}" ] && usage
+
+shift `expr ${OPTIND} - 1`
+
+# Αν δεν έχει δοθεί κάποιο πρόγραμμα στο command line, τότε εκτελείται
+# subshell με επηυξημένο PATH ώστε να περιλμαβάνει τα προγράμματα του
+# πρεφαδόρου.
+
+[ $# -lt 1 ] && {
+	case "${PATH}" in
+	:*)
+		PATH=":${PREFADOROS}/bin${PATH}"
+		;;
+	*)
+		PATH="${PREFADOROS}/bin:${PATH}"
+		;;
+	esac
+
+	PS1="prefadoros> " bash -i
+	exit 2
+}
+
+program="${PREFADOROS}/bin/${1}"
+
+[ -x "${program}" ] || {
+	echo "${progname}: ${1}: program not found" >&2
+	exit 2
+}
+
+shift 1
+exec "${program}" "$@"

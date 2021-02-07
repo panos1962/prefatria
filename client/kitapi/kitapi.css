@@ -1,0 +1,259 @@
+body {
+	margin: 0;
+	max-width: none;
+	font-family: "Comic Sans MS", cursive;
+	color: #191970;
+}
+
+table {
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+table td {
+	padding: 0;
+}
+
+#ofelimo {
+	min-height: 0;
+}
+
+#kitapiTrapezi {
+	position: absolute;
+	top: 0px;
+	left: 6px;
+	white-space: nowrap;
+
+	font-family: "Impact", "Charcoal", sans-serif;
+	font-size: 30px;
+	letter-spacing: 2px;
+
+	color: #0A334E;
+	opacity: 0.3;
+}
+
+/***********************************************************************************************************************/
+
+#kitapiPinakas {
+	width: 100%;
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+.kitapiPerioxi {
+	position: relative;
+	border-width: 1px;
+	border-color: #333333;
+	min-height: 420px;
+}
+
+#kitapiPerioxi3 {
+	border-style: none solid solid none;
+}
+
+#kitapiPerioxi2 {
+	border-style: none none solid solid;
+}
+
+#kitapiPerioxi1 {
+	border-style: solid none none none;
+	min-height: 0;
+}
+
+/***********************************************************************************************************************/
+
+.kitapiPektisData {
+	padding: 2px;
+	text-align: center;
+}
+
+.kitapiPektisOnoma {
+	display: inline-block;
+	padding: 0px 4px 2px 4px;
+	min-width: 40px;
+	max-width: 140px;
+	overflow: hidden;
+
+	font-size: 22px;
+	font-weight: bold;
+
+	color: #003366;
+	background-color: #FFFF66;
+
+	border-style: solid;
+	border-width: 1px;
+	border-color: #C2C2C2;
+
+	white-space: nowrap;
+	opacity: 0.5;
+}
+
+.kitapiPerioxi {
+}
+
+/***********************************************************************************************************************/
+
+.kitapiStiliKapikia12,
+.kitapiStiliKapikia21,
+.kitapiStiliKapikia32 {
+	float: right;
+}
+
+/***********************************************************************************************************************/
+
+.kitapiDaraveri {
+	width: 25%;
+	padding: 6px;
+}
+
+#kitapiDaraveri31 {
+	vertical-align: bottom;
+	text-align: left;
+}
+
+#kitapiDaraveri32 {
+	vertical-align: top;
+	text-align: right;
+}
+
+#kitapiDaraveri23 {
+	vertical-align: top;
+	text-align: left;
+}
+
+#kitapiDaraveri21 {
+	vertical-align: bottom;
+	text-align: right;
+}
+
+#kitapiDaraveri13 {
+	vertical-align: top;
+	text-align: left;
+}
+
+#kitapiDaraveri12 {
+	vertical-align: top;
+	text-align: right;
+}
+
+/***********************************************************************************************************************/
+
+.kitapiIsozigio {
+	position: absolute;
+	top: 4px;
+	right: 10px;
+
+	font-family: "Georgia", serif;
+	font-weight: bold;
+	font-size: 20px;
+
+	color: #095802;
+	text-shadow: 1px 1px 1px #222;
+}
+
+.kitapiIsozigioSin {
+	color: #095802;
+}
+
+.kitapiIsozigioMion {
+	color: #B60B03;
+}
+
+/***********************************************************************************************************************/
+
+.kitapiStiliKasa {
+	padding: 14px 0 0 0;
+	margin: 0 auto;
+	color: #111185;
+
+	column-count: 1;
+	-moz-column-count: 1;
+	-webkit-column-count: 1;
+
+	column-gap: 0;
+	-moz-column-gap: 0;
+	-webkit-column-gap: 0;
+}
+
+.kitapiKasa {
+	width: 38px;
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.kitapiKasaDiagrafi {
+	text-decoration:line-through;
+	opacity: 0.7;
+}
+
+.kitapiKasaMesa {
+	color: #C70E0E;
+}
+
+.kitapiKasaGlipsimo {
+	color: #7C580A;
+}
+
+/***********************************************************************************************************************/
+
+.kitapiStiliKapikia {
+	color: #111185;
+
+	column-count: 1;
+	-moz-column-count: 1;
+	-webkit-column-count: 1;
+
+	column-gap: 0;
+	-moz-column-gap: 0;
+	-webkit-column-gap: 0;
+}
+
+.kitapiKapikia {
+	width: 36px;
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.kitapiKapikiaDiagrafi {
+	text-decoration:line-through;
+	color: #6B7A8A;
+	font-weight: normal;
+}
+
+.kitapiEmfanesPoso {
+	background-color: yellow;
+}
+
+/***********************************************************************************************************************/
+
+/*
+.kitapiPerioxi {
+	background-color: rgba(128, 128, 0, 0.14);
+}
+
+.kitapiDaraveri {
+	background-color: teal;
+}
+
+.kitapiStiliKasa {
+	background-color: yellow;
+}
+
+.kitapiKasa {
+	background-color: magenta;
+}
+
+.kitapiKapikia {
+	background-color: magenta;
+}
+
+.kitapiPektisData {
+	background-color: rgba(255, 0, 0, 0.06);
+}
+
+.kitapiStiliKapikia {
+	background-color: crimson;
+}
+*/

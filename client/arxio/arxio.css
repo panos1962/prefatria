@@ -1,0 +1,286 @@
+body {
+	overflow-y: hidden;
+}
+
+#kritiria {
+	padding: 0 0 10px 0;
+}
+
+#apotelesmata {
+	padding: 0 10px 10px 4px;
+	overflow-y: auto;
+	width: 920px;
+}
+
+.trapezi {
+	margin: 0 0 0px 10px;
+	padding: 10px 0px;
+	opacity: 0.8;
+	overflow: visible;
+	white-space: nowrap;
+
+	border-style: none none solid none;
+	border-width: 2px;
+	border-color: rgb(157, 157, 153);
+	background-color: rgb(203, 219, 197);
+}
+
+.trapezi:hover {
+	opacity: 1;
+	background-color: rgb(169, 192, 160);
+	cursor: pointer;
+}
+
+.trapeziData {
+	margin: 0 0 0 8px;
+	width: 160px;
+	height: 28px;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	border-style: none;
+}
+
+.trapeziDataContent {
+	position: relative;
+	top: 4px;
+}
+
+.trapeziDataContent:hover {
+	z-index: 2;
+}
+
+.trapeziPektis {
+	display: inline-block;
+	position: relative;
+	width: 166px;
+	height: 28px;
+	overflow: hidden;
+	padding: 0 0 0 4px;
+
+	text-align: left;
+	font-size: 18px;
+	white-space: nowrap;
+
+	border-radius: 5px;
+	background-color: #8AA886;
+	box-shadow: 2px 2px 6px #353535;
+}
+
+.trapeziArxio {
+	display: inline-block;
+	position: relative;
+	top: 6px;
+	height: 28px;
+	vertical-align: top;
+	text-align: left;
+	margin-left: 20px;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+.trapeziOpts {
+	top: 0px;
+	left: 6px;
+	z-index: 1;
+}
+
+.trapeziOption {
+	width: 30px;
+}
+
+.pektisOnoma {
+	display: inline-block;
+	position: relative;
+	top: 4px;
+}
+
+.dianomi {
+	position: relative;
+	bottom: -10px;
+	padding: 8px 0px 0px 0px;
+	opacity: 0.8;
+
+	border-style: solid none none none;
+	border-width: 2px;
+	border-color: rgb(157, 157, 153);
+	background-color: rgb(255, 200, 100);
+}
+
+.dianomi:hover {
+	opacity: 1.0;
+	cursor: pointer;
+	background-color: rgb(194, 219, 131);
+}
+
+.dianomiData {
+	display: inline-block;
+	position: relative;
+	top: -10px;
+	left: 8px;
+
+	margin: 0 8px 0 0;
+	width: 160px;
+	height: 28px;
+	text-align: center;
+
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size: 18px;
+
+	border-radius: 5px;
+	box-shadow: 2px 2px 6px #353535;
+}
+
+.dianomiData:hover {
+	font-weight: bold;
+}
+
+.dianomiDataContent {
+	position: relative;
+	top: 6px;
+}
+
+.dianomiPektis {
+	text-align: center;
+	background-color: transparent;
+}
+
+.dianomiPektisOnoma {
+	position: absolute;
+	left: 4px;
+	top: 4px;
+	opacity: 0.15;
+	font-weight: normal;
+}
+
+.dianomiPektisOnomaTrapezi {
+	opacity: 0.6;
+}
+
+.pektisOnomaTrexon {
+	opacity: 1;
+	text-shadow: 0 0 2px #FFF;
+}
+
+.dianomiKlisimo {
+	position: relative;
+	top: 10px;
+
+	padding: 6px 0 4px 0;
+	text-align: center;
+
+	border-style: solid none none none;
+	border-width: 2px;
+	border-color: rgb(157, 157, 153);
+	background-color: rgb(216, 216, 216);
+}
+
+.dianomiKlisimoIcon {
+	width: 70px;
+}
+
+.arxioKapikia {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: inline-block;
+	padding: 2px 4px 0 0;
+	height: 100%;
+	min-width: 40px;
+	text-align: right;
+	font-weight: bold;
+	color: rgb(22, 49, 133);
+	background-color: rgba(253, 253, 162, 0.30);
+}
+
+.arxioKapikiaTrexon {
+	background-color: rgb(253, 253, 162);
+}
+
+.arxioKapikiaMion {
+	color: rgb(194, 0, 0);
+}
+
+.inputLathos {
+	color: #990000;
+	background-color: rgb(253, 253, 162);
+}
+
+.formaButton {
+	margin: 0 4px 0 16px;
+}
+
+.dealerIcon {
+	position: absolute;
+	top: 1px;
+	left: 1px;
+	width: 14px;
+}
+
+.simetoxiIcon {
+	position: absolute;
+	bottom: 0px;
+	left: 12px;
+	width: 28px;
+}
+
+.agora {
+	position: absolute;
+	width: 100%;
+	bottom: -1px;
+}
+
+.agoraBazes {
+	display: inline-block;
+	position:relative;
+	bottom: 0px;
+	font-size: 22px;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	font-weight: bold;
+}
+
+.agoraBazesTrexon {
+	text-shadow: 0 0 2px rgb(40, 60, 90);
+}
+
+.agoraXroma {
+	display: inline-block;
+	position:relative;
+	bottom: -2px;
+	height: 20px;
+}
+
+.tsoxaDilosiAsoi {
+	font-size: 16px;
+}
+
+.tsoxaDilosiAsoi:before {
+	left: -20px;
+}
+
+.tsoxaDilosiAsoiIcon {
+	left: 12px;
+	width: 22px;
+}
+
+.bazes {
+	position: absolute;
+	bottom: 2px;
+	left: -2px;
+	width: 100%;
+}
+
+.bazaIcon {
+	width: 12px;
+	margin: 0 0 0 2px;
+}
+
+.apoxi {
+	background-image: url('../ikona/endixi/ektosSmall.png');
+	background-repeat: repeat;
+}
+
+.mesaMia {
+	background-color: rgba(255, 144, 110, 0.50);
+}
+
+.mesaSolo {
+	background-color: #FF785E;
+}

@@ -1,0 +1,32 @@
+.doreaParagrafos {
+	padding: 8px 0;
+}
+
+#ofelimo {
+	width: 90%;
+	margin: 0 auto;
+	line-height: 150%;
+	text-align: justify;
+}
+
+#doreaOwnerPhoto {
+	width: 100px;
+	float: left;
+	margin: 7px 10px 0 0;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #003300;
+}
+
+#doreaDonateIconContainer {
+	display: inline-block;
+	position: relative;
+	min-width: 70px;
+	white-space: nowrap;
+}
+
+#doreaDonateIcon {
+	position: absolute;
+	bottom: -7px;
+	height: 24px;
+}

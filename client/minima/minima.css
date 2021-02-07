@@ -1,0 +1,241 @@
+body {
+	max-width: none;
+}
+
+#minimata {
+	border-spacing: 2px 6px;
+	border-collapse: collapse;
+}
+
+.minima {
+	display: none;
+	position: relative;
+	vertical-align: top;
+	border-style: none none solid none;
+	border-width: 1px;
+	border-color: rgb(190, 190, 190);
+}
+
+.minimaZebra0 {
+	background-color: #FFF9BA;
+}
+
+.minimaZebra1 {
+	background-color: #E6E0A7;
+}
+
+.minimaExerxomeno {
+	opacity: 1;
+}
+
+.minimaIserxomeno {
+	opacity: 1;
+}
+
+.minimaIkothen {
+	opacity: 0.6;
+}
+
+.minimaDiavasmeno {
+	opacity: 0.6;
+}
+
+.minimaTrexon {
+	opacity: 1;
+	background-color: rgb(213, 252, 213);
+	background-color: #FFFFE2;
+	background-color: transparent;
+}
+
+.minimaDiagrafi {
+	background-color: rgb(241, 170, 170);
+}
+
+.minimaKodikos {
+	display: none;
+	width: 0px;
+	padding: 4px 10px;
+	text-align: right;
+}
+
+.minimaPote {
+	position: relative;
+	width: 1px;
+	padding: 4px 10px;
+	text-align: right;
+	white-space: nowrap;
+}
+
+.minimaPios {
+	min-width: 6em;
+	width: 1px;
+	padding: 4px 10px;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.minimaPiosOnoma {
+	display: block;
+	font-size: 16px;
+	font-weight: bold;
+	white-space: nowrap;
+}
+
+.minimaIdosIcon {
+	display: block;
+	margin: 6px auto;
+	height: 50px;
+}
+
+.minimaKimeno {
+	padding: 4px 10px;
+	text-align: left;
+}
+
+.minimaKimenoTrexon {
+	padding: 4px 10px;
+	text-align: left;
+	background-color: #FFFFCC;
+	border-radius: 10px;
+}
+
+.minimaPanel {
+	width: 42px;
+	height: 126px;
+}
+
+.minimaPanelButton {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	padding: 2px;
+	margin: 2px;
+	background-color: transparent;
+	border-style: outset;
+	border-width: 2px;
+	border-color: transparent;
+}
+
+.minimaPanelButton:hover {
+	background-color: rgb(233, 248, 154);
+	border-color: rgb(229, 255, 190);
+	cursor: pointer;
+}
+
+.minimaPanelIcon {
+	width: 100%;
+}
+
+#minimaEditForma {
+	display: none;
+	position: fixed;
+	top: 150px;
+	left: 240px;
+	width: 700px;
+	height: 433px;
+	border-radius: 10px;
+	background-color: rgb(176, 206, 163);
+}
+
+#minimaEditFormaPros {
+	position: absolute;
+	top: 12px;
+	left: 10px;
+}
+
+#minimaEditFormaParaliptisLogin {
+	font-size: 14px;
+}
+
+#minimaEditFormaKimeno {
+	position: absolute;
+	top: 50px;
+	left: 12px;
+	width: 698px;
+	height: 392px;
+}
+
+#minimaEditFormaPanel {
+	position: absolute;
+	top: 12px;
+	left: 300px;
+}
+
+.minimaNeoIcon {
+	position: absolute;
+	top: 40px;
+	left: 3px;
+	width: 82px;
+	cursor: crosshair;
+}
+
+#minimaControls {
+	padding: 10px 130px 20px 30px;
+}
+
+.minimaControlsGo {
+	position: fixed;
+	top: 50px;
+	width: 30px;
+	height: 300px;
+/*
+	background-color: rgba(0, 128, 128, 0.21);
+*/
+}
+.minimaControlsGoIcon {
+	display: none;
+	position: fixed;
+	top: 61px;
+	width: 20px;
+	cursor: pointer;
+}
+
+.minimaButton {
+	display: inline-block;
+	margin: 2px 10px;
+}
+
+.minimaCheckboxButton {
+	display: inline-block;
+	padding: 0 0 2px 0;
+	cursor: pointer;
+}
+
+.minimaCheckboxButton:hover {
+	background-color: rgba(68, 146, 146, 0.1);
+}
+
+.minimaPrompt {
+	display: inline-block;
+}
+
+.minimaCheckbox {
+	position: relative;
+	bottom: -3px;
+	transform: scale(1.3);
+	-ms-transform: scale(1.3);
+	-webkit-transform: scale(1.3);
+}
+
+.minimaApantisiLabel {
+	position: absolute;
+	top: 56px;
+	left: 82px;
+	padding: 2px 8px;
+	font-size: 24px;
+	font-family: Impact, Charcoal, sans-serif;
+	-ms-transform: rotate(-36deg);
+	-webkit-transform: rotate(-36deg);
+	transform: rotate(-36deg);
+	color: #192D94;
+	border-radius: 8px;
+	box-shadow: 1px 1px 4px #888;
+	opacity: 0.1;
+}
+
+.minimaApantisiLabel:hover {
+	background-color: #FFFF33;
+	opacity: 0.7;
+	cursor: pointer;
+}

@@ -1,0 +1,52 @@
+.formaSoma {
+	position: relative;
+}
+
+.account_kodikos {
+	opacity: 0.3;
+}
+
+.account_sokidok {
+	visibility: hidden;
+}
+
+#ilikiaContainer {
+	display: none;
+}
+
+#xrisiContainer {
+	display: none;
+}
+
+#photoContainer {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	width: 200px;
+	height: 78px;
+	overflow: hidden;
+
+	border-style: solid;
+	border-width: 3px;
+	border-color: #B8B8A5;
+	border-radius: 5px;
+	box-shadow: 2px 2px 4px #333333;
+	background-color: #D3D3AD;
+
+	cursor: pointer;
+}
+
+#pektisPhoto {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	height: 100%;
+}
+
+iframe[name="action"] {
+	display: none;
+	width: 80%;
+	height: 200px;
+	margin: 20px 0 0 20px;
+	background-color: #FFFFCC;
+}

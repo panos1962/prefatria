@@ -1,0 +1,125 @@
+#!/usr/bin/env sh
+
+progname=`basename $0`
+
+[ -z "${PREFADOROS}" ] && {
+	echo "${progname}: PREFADOROS: environment variable not set" >&2
+	exit 1
+}
+
+usage() {
+	echo "usage: ${progname}"
+	exit 1
+}
+
+while getopts ":" arg
+do
+	case "${arg}" in
+	\?)
+		echo "${progname}: ${OPTARG}: invalid option" >&2
+		errs="yes"
+		;;
+	esac
+done
+
+[ -n "${errs}" ] && usage
+
+shift `expr ${OPTIND} - 1`
+[ $# -ne 0 ] && usage
+
+dir="${PREFADOROS}/stats/etos"
+[ -d "${dir}" ] || mkdir "${dir}" 2>/dev/null || {
+	echo "${progname}: ${dir}: cannot create directory" >&2
+	exit 2
+}
+
+dir="${PREFADOROS}/stats/rank"
+[ -d "${dir}" ] || mkdir "${dir}" 2>/dev/null || {
+	echo "${progname}: ${dir}: cannot create directory" >&2
+	exit 2
+}
+
+www="${PREFADOROS}/stats/www"
+[ -d "${www}" ] || mkdir "${www}" 2>/dev/null || {
+	echo "${progname}: ${www}: cannot create directory" >&2
+	exit 2
+}
+
+rm -f "${PREFADOROS}/client/site/stats"
+ln -s "${www}" "${PREFADOROS}/client/site/stats"
+
+# Κατασκευάζουμε per site directory "pektis" στο οποίο θα φιλοξενηθούν
+# files με στατιστικά δεδομένα κατά έτος και κατά παίκτη.
+
+cd "${www}" 2>/dev/null || {
+	echo "${progname}: ${www}: directory not found" >&2
+	exit 2
+}
+
+dir="${www}/pektis"
+[ -d "${dir}" ] || mkdir "${dir}" 2>/dev/null || {
+	echo "${progname}: ${dir}: cannot create directory" >&2
+	exit 2
+}
+
+cd "${dir}" 2>/dev/null || {
+	echo "${progname}: ${dir}: directory not found" >&2
+	exit 2
+}
+
+# Κατασκευάζουμε per site directory "stisimo" στο οποίο θα φιλοξενηθούν
+# files με στατιστικά δεδομένα κατά έτος και κατά ημερομηνία στησίματος.
+
+cd "${www}" 2>/dev/null || {
+	echo "${progname}: ${www}: directory not found" >&2
+	exit 2
+}
+
+dir="${www}/stisimo"
+[ -d "${dir}" ] || mkdir "${dir}" 2>/dev/null || {
+	echo "${progname}: ${dir}: cannot create directory" >&2
+	exit 2
+}
+
+cd "${dir}" 2>/dev/null || {
+	echo "${progname}: ${dir}: directory not found" >&2
+	exit 2
+}
+
+# Στα directories "pektis", "stisimo" και σε άλλα παρόμοια θα πρέπει να υπάρχουν
+# subdirectories που αφορούν σε στατιστικά στοιχεία παικτών για τρείς κατηγορίες
+# παρτίδων: παρτίδες στις οποίες παίζεται το πάσο (paso), παρτίδες στις οποίες
+# δεν παίζεται το πάσο (oxipaso) και παρτίδες ανεξαρτήτως αν παίζεται ή όχι το
+# πάσο (oles).
+#
+# Όλα τα συγκεντρωτικά per site στατιστικά στοιχεία προκύπτουν από τα αναλυτικά
+# στοιχεία παρτίδας που βρίσκονται στο directory "stats/etos".
+#
+# Στο diretory "stats/etos" πρέπει να υπάρχουν files της μορφής:
+#
+# YYYY.trapezi	Κωδικοί τραπεζιών του έτους YYYY με αντίστροφη ταξινόμηση.
+#		Αυτά τα αρχεία προκύπτουν εύκολα με εντολές της μορφής:
+#
+#		trapezi -y YYYY -d >YYYY.trapezi
+#
+# YYYY.data	Πλήρη στοιχεία παρτίδων για τις παρτίδες του έτους YYYY.
+#		Αυτά τα αρχεία προκύπτουν εύκολα με εντολές της μορφής:
+#
+#		[ nice ] stats -D YYYY.trapezi >YYYY.data
+
+cd "${www}" 2>/dev/null || {
+	echo "${progname}: ${www}: directory not found" >&2
+	exit 2
+}
+
+for dir in pektis stisimo
+do
+	for i in oles paso oxipaso
+	do
+		subdir="${dir}/${i}"
+		[ -d "${subdir}" ] || mkdir "${subdir}" 2>/dev/null || {
+			echo "${progname}: ${subdir}: cannot create directory" >&2
+			exit 2
+		}
+	done
+done

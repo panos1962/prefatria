@@ -1,0 +1,70 @@
+body {
+	margin: 0 8px;
+	overflow-y: visible;
+}
+
+button {
+	margin: 0 4px;
+	cursor: pointer;
+}
+
+#konsola {
+	width: 100%;
+	position: fixed;
+	margin: 8px 0;
+}
+
+#anazitisi {
+	display: inline-block;
+	float: right;
+	margin: 0 20px;
+}
+
+.prompt {
+	display: inline-block;
+	font-style: italic;
+}
+
+.pedio {
+	display: inline-block;
+	width: 100px;
+	margin: 0 4px;
+}
+
+#ofelimo {
+	position: absolute;
+	min-height: 0;
+	overflow-y: auto;
+}
+
+#account {
+	display: inline-block;
+	font-weight: bold;
+	color: #225222;
+}
+
+#account:before {
+	content: '[';
+	margin-right: 4px;
+	color: grey;
+}
+
+#account:after {
+	content: ']';
+	margin-left: 4px;
+	color: grey;
+}
+
+.pektis {
+	width: auto;
+	padding: 0 4px;
+	margin: 0 8px 4px 0;
+}
+
+.pektis:hover {
+	font-weight: normal;
+}
+
+.pektisMatch {
+	background-color: #FCFF96;
+}

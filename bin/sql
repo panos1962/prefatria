@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+progname="prefadoros::`basename $0`"
+
+[ -n "${PREFADOROS}" ] || {
+	echo "${progname}: PREFADOROS: environment variable not set" >&2
+	exit 2
+}
+
+[ -d "${PREFADOROS}" ] || {
+	echo "${progname}: ${PREFADOROS}: directory not found" >&2
+	exit 2
+}
+
+usage() {
+	echo "usage: ${progname} [files...]
+       ${progname} -e sql_query" >&2
+	exit 1
+}
+
+inline=
+
+while getopts ":e" arg
+do
+	case "${arg}" in
+	e)
+		inline="yes"
+		;;
+	\?)
+		echo "${progname}: ${OPTARG}: invalid option" >&2
+		errs="yes"
+		;;
+	esac
+done
+
+[ -n "${errs}" ] && usage
+
+shift `expr ${OPTIND} - 1`
+
+if [ -n "${inline}" ]; then
+	echo "$@" | php "${PREFADOROS}/src/sql/main.php"
+else
+	cat $* | php "${PREFADOROS}/src/sql/main.php"
+fi

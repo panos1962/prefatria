@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Exec=/usr/bin/google-chrome --app="http://www.prefadoros.gr/?motd&diafimisi"
+Icon=/home/panos/Desktop/prefatria/client/ikona/misc/kitapiSquare.png
+StartupWMClass=www.prefadoros.gr
+Name=prefadoros
+Name[en_US]=Prefa!
+Name[el_GR]=Πρέφα!

@@ -1,0 +1,707 @@
+body {
+	background-image: url('../ikona/paraskinio/standard.png');
+	background-repeat: repeat;
+	font-family: "Georgia", serif;
+	font-size: 16px;
+	color: #16130E;
+	max-width: 1000px;
+}
+
+select {
+	cursor: pointer;
+}
+
+#ixos {
+	display: none;
+}
+
+/************************************************************************************************************************/
+
+#diafimisi {
+	display: none;
+	position: relative;
+	padding: 10px;
+	margin: 0 0 8px 0;
+	text-align: center;
+/*
+background-color: #CEB566;
+*/
+}
+
+#motd {
+	display: none;
+	position: relative;
+	padding: 10px;
+	margin: 0 0 8px 0;
+	text-align: center;
+/*
+background-color: #9AA55F;
+*/
+}
+
+.motdEnimerosi {
+	width: 704px;
+	padding: 10px;
+	margin: 0 auto;
+
+	text-align: center;
+	line-height: 150%;
+
+	border-style: dashed;
+	border-width: 2px;
+	border-color: #FCBF30;
+	border-radius: 10px;
+	box-shadow: 2px 2px 40px #888;
+
+	color: #303233;
+	background-color: #FFFFCC;
+}
+
+#ofelimo {
+	position: relative;
+	min-height: 630px;
+/*
+background-color: rgba(128, 0, 97, 0.37);
+*/
+}
+
+/************************************************************************************************************************/
+
+#toolbar {
+	border-style: none none solid none;
+	border-width: 2px;
+	border-color: #999966;
+	background-color: rgba(234, 236, 182, 0.10);
+}
+
+#toolbarTable {
+	width: 100%;
+}
+
+#toolbarLeft {
+	text-align: left;
+}
+
+#toolbarCenter {
+	font-weight: bold;
+	text-align: center;
+	white-space: nowrap;
+}
+
+#toolbarRight {
+	position: relative;
+	text-align: right;
+}
+
+#toolbarCopyright {
+	white-space: nowrap;
+/*
+	background-color: rgba(255, 0, 255, 0.25);
+*/
+}
+
+#toolbarEmailIcon {
+	position: relative;
+	bottom: -4px;
+	width: 24px;
+	height: 18px;
+}
+
+#toolbarFortos {
+	color: #3F3F3F;
+}
+
+.toolbarFortosData {
+	color: #16130E;
+}
+
+/************************************************************************************************************************/
+
+#googleSearch {
+	position: relative;
+	display: inline;
+}
+
+#googleSearchIconContainer {
+	position: relative;
+	display: inline-block;
+	width: 22px;
+	margin-right: 10px;
+}
+
+#googleSearchIcon {
+	position: absolute;
+	bottom: -5px;
+	right: 0;
+	width: 100%;
+	cursor: pointer;
+}
+
+#___gcse_0 {
+	display: none;
+	position: absolute;
+	bottom: 18px;
+	right: 25px;
+	width: 380px;
+	z-index: 1;
+}
+
+.gsc-control-cse {
+	padding: 0px !important;
+	width: 100%;
+	height: 0px;
+	white-space: nowrap;
+	background-color: #FFFFFF !important;
+}
+
+input.gsc-input {
+	font-size: 16px !important;
+}
+
+/************************************************************************************************************************/
+
+#ribbon {
+	border-style: solid none none none;
+	border-width: 2px;
+	border-color: #999966;
+	background-color: rgba(234, 236, 182, 0.10);
+}
+
+#ribbonTable {
+	width: 100%;
+}
+
+#ribbonTable td {
+	vertical-align: top;
+}
+
+#ribbonLeft {
+	text-align: left;
+}
+
+#ribbonCenter {
+	text-align: center;
+}
+
+#ribbonRight {
+	text-align: right;
+}
+
+.ribbonIcon {
+	max-height: 24px;
+	margin: 2px 2px 0 0;
+}
+
+#donate {
+	display: inline-block;
+}
+
+/************************************************************************************************************************/
+
+.tab {
+	display: inline;
+	padding: 0 2px;
+	white-space: nowrap;
+}
+
+.tab:before {
+	display: inline-block;
+	content: '[';
+	margin-right: 4px;
+}
+
+.tab:after {
+	display: inline-block;
+	content: ']';
+	margin-left: 4px;
+}
+
+#tabPrive {
+	display: inline;
+	padding: 0 6px;
+	border-width: 0px;
+	border-radius: 2px;
+}
+
+#tabPrive a:link {
+	color: #FFD700;
+}
+
+#tabPrive a:visited {
+	color: #FFD700;
+}
+
+#tabPrive a:hover {
+	color: #FF8C00;
+}
+
+/************************************************************************************************************************/
+
+.fyi {
+	white-space: nowrap;
+	overflow: hidden;
+	font-style: italic;
+	color: #0059B9;
+	background-color: #FFFF7E;
+}
+
+#fyiPano {
+	text-align: right;
+}
+
+#fyiKato {
+	text-align: left;
+}
+
+/***************************************************************************************************************************/
+
+.forma {
+	display: inline-block;
+	margin: 20px 0 0 20px;
+}
+
+.formaSoma {
+	padding: 14px;
+	background-color: #D3D3AD;
+
+	border-style: solid;
+	border-width: 1px;
+	border-color: #888888;
+
+	box-shadow: 2px 2px 8px #B4B4B4;
+}
+
+.formaTitlos {
+	text-align: center;
+	font-weight: bold;
+	margin: 0 0 1ex 0;
+}
+
+.formaPrompt {
+	display: block;
+	text-align: right;
+	padding: 0 0.4em 0 0;
+	margin: 0 0 0 0.4em;
+	font-style: italic;
+}
+
+span.formaPrompt {
+	display: inline-block;
+}
+
+.formaPedio {
+	display: inline-block;
+	text-align: left;
+	padding: 0 0 0 0.2em;
+	margin: 0 0.4em 0 0;
+}
+
+span.formaPedio {
+	display: inline-block;
+}
+
+.formaPanel {
+	margin-top: 1.8ex;
+}
+
+.formaButton {
+	margin-right: 1em;
+	cursor: pointer;
+}
+
+/***************************************************************************************************************************/
+
+.dialogos {
+	position: absolute;
+
+	padding: 4px;
+	line-height: 150%;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	white-space: normal !important;
+
+	background-color: #E9E0A1;
+	background-image: url('../ikona/misc/dialogos.png');
+	background-repeat: repeat;
+
+	border-style: solid;
+	border-width: 1px;
+	border-color: #D6B879;
+	border-radius: 3px;
+	box-shadow: 4px 4px 18px #000;
+}
+
+.dialogosButton {
+	display: inline-block;
+
+	padding: 0 4px 0 4px;
+	margin: 0 10px 0 10px;
+
+	text-align: center;
+	font-style: normal;
+	white-space: nowrap;
+
+	background-color: #FFFFAB;
+	cursor: pointer;
+
+	border-style: solid;
+	border-width: 2px;
+	border-color: #C7B48C;
+	box-shadow: 2px 2px 4px #E9F0D0;
+}
+
+.dialogosButton:hover {
+	border-style: outset;
+	background-color: #FFFF79;
+	text-shadow: 1px 0px #000 !important;
+}
+
+.dialogosData {
+	display: inline;
+	font-weight: bold;
+}
+
+.dialogosWarning {
+	background-color: rgb(223, 148, 148);
+}
+
+/************************************************************************************************************************/
+
+.panel {
+	position: relative;
+	background-color: rgba(183, 216, 113, 0.21);
+	overflow: hidden;
+}
+
+.panelV {
+	height: 100%;
+	padding: 4px 2px 0 2px;
+}
+
+.panelH {
+	height: 32px;
+	padding: 2px 0;
+	white-space: nowrap;
+}
+
+.panelSiromeno {
+	cursor: ns-resize;
+}
+
+.panelButton {
+	display: none;
+	padding: 2px;
+
+	border-style: outset;
+	border-width: 2px;
+	border-color: transparent;
+}
+
+.panelButton:hover {
+	background-color: rgb(255, 255, 178);
+	border-color: rgb(200, 206, 211);
+	cursor: pointer;
+}
+
+.panelButtonCandi {
+	background-color: rgb(255, 255, 178);
+	border-color: rgb(200, 206, 211);
+}
+
+.panelButtonV {
+	margin-bottom: 6px;
+}
+
+.panelButtonH {
+	margin-left: 4px;
+}
+
+.panelButtonDexia {
+	float: right;
+}
+
+.panelIcon {
+	display: block;
+}
+
+.panelIconV {
+	width: 32px;
+}
+
+.panelIconH {
+	height: 24px;
+}
+
+.panelKimeno {
+	display: inline-block;
+	position: relative;
+	top: -10px;
+	margin: 0 2px 0 2px;
+	font-size: 18px;
+	font-style: italic;
+}
+
+.panelInput {
+	display: inline-block;
+	position: relative;
+	top: -10px;
+	width: 180px;
+	margin: 0 0 0 2px;
+	font-size: 15px;
+	font-style: normal;
+	background-color: #FFFFD2;
+}
+
+.panelButtonEkremes {
+	background-color: #FFFF9D !important;
+	border-style: double !important;
+	border-color: rgba(255, 0, 0, 0.22) !important;
+}
+
+/************************************************************************************************************************/
+
+.klisimoIcon {
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	width: 22px;
+	opacity: 0.5;
+	cursor: pointer;
+}
+
+.klisimoIconEmfanes {
+	opacity: 1;
+}
+
+/************************************************************************************************************************/
+
+.iconCandi {
+	background-color: #FFFFCC !important;
+	border-style: outset !important;
+	border-color: #FFF !important;
+/*
+border-color: red !important;
+*/
+}
+
+.iconEkremes {
+	background-color: #FFFF9D !important;
+	border-style: double !important;
+	border-color: rgba(255, 0, 0, 0.22) !important;
+}
+
+/************************************************************************************************************************/
+
+.strofi90 {
+	transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
+}
+
+.strofi180 {
+	transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+}
+
+.strofi270 {
+	transform: rotate(270deg);
+	-ms-transform: rotate(270deg);
+	-webkit-transform: rotate(270deg);
+}
+
+/************************************************************************************************************************/
+
+.kounima0 {
+	display: inline-block;
+	transform: rotate(-2deg);
+	-ms-transform: rotate(-2deg);
+	-webkit-transform: rotate(-2deg);
+	background-color: #FFFF99;
+	text-decoration: none;
+}
+
+.kounima1 {
+	display: inline-block;
+	transform: rotate(2deg);
+	-ms-transform: rotate(2deg);
+	-webkit-transform: rotate(2deg);
+	background-color: #FFFF99;
+	text-decoration: none;
+}
+
+/************************************************************************************************************************/
+
+.flipX {
+	transform: scaleX(-1);
+	-ms-transform: scaleX(-1);
+	-webkit-transform: scaleX(-1);
+}
+
+.flipY {
+	transform: scaleY(-1);
+	-ms-transform: scaleY(-1);
+	-webkit-transform: scaleY(-1);
+}
+
+/************************************************************************************************************************/
+
+.redirect {
+	max-width: 600px;
+	padding: 10px;
+	background-color: #ADC79F;
+	border-style: double;
+	border-width: 5px;
+	border-color: #9BB37C;
+}
+
+.redirectInfo {
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.redirectInfo:before {
+	content: 'ERROR:';
+	margin-right: 4px;
+	font-weight: normal;
+}
+
+.redirectSimiosi {
+	margin-top: 10px;
+	font-style: italic;
+}
+
+/************************************************************************************************************************/
+
+.enimerosi {
+	position: absolute;
+	width: 530px;
+	text-align: justify;
+	line-height: 150%;
+	padding: 10px 15px;
+
+	background-color: #FFFFCC;
+	color: #303233;
+
+	border-style: double;
+	border-width: 3px;
+	border-color: #FCBF30;
+	border-radius: 3px;
+
+	box-shadow: 4px 4px 10px #2E2E2E;
+}
+
+.enimerosiEntono {
+	color: #FF3300;
+	text-shadow: 0px 1px 0px #A84026;
+}
+
+.enimerosiTitlos {
+	margin: 0 0 10px 0;
+	text-align: center;
+}
+
+.enimerosiTitlosKimeno {
+	display: inline-block;
+	background-color: #D44837;
+	color: #FCBF30;
+	padding: 2px 6px;
+	border-radius: 2px;
+
+	box-shadow: 2px 2px 4px #2E2E2E;
+}
+
+/* Για παραγράφους ενημερωτικού κειμένου */
+
+.enimerosiKimeno {
+	padding: 10px;
+}
+
+/************************************************************************************************************************/
+
+.provlima {
+	position: absolute;
+	top: 60px;
+	left: 10px;
+
+	padding: 4px;
+	line-height: 150%;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	white-space: normal !important;
+
+	background-color: #F9FF62
+	background-image: url('../ikona/misc/provlima.png');
+	background-repeat: repeat;
+
+	border-style: solid;
+	border-color: #CE8A23;
+	border-width: 2px;
+	border-radius: 3px;
+	box-shadow: 4px 4px 18px #000;
+}
+
+.sinefo {
+	text-shadow: 0px 0px 10px #F1F1F1, 0px 0px 8px #F1F1F1, 0px 0px 4px #F1F1F1;
+}
+
+.entona {
+	font-weight: bold;
+}
+
+.plagia {
+	font-style: italic;
+}
+
+.ipogramisi {
+	text-decoration: underline;
+}
+
+.mavro {
+	color: #16130E;
+}
+
+.ble {
+	color: #003366;
+}
+
+.prasino {
+	color: #104410;
+}
+
+.kokino {
+	color: #990000;
+}
+
+.prive {
+	background-color: #587B80;
+	color: #FFD700;
+}
+
+.kentro {
+	text-align: center;
+}
+
+.dexia {
+	text-align: right;
+}
+
+.aristera {
+	text-align: left;
+}
+
+.nobr {
+	white-space: nowrap;
+}
+
+/************************************************************************************************************************/
+
+#vidaLink {
+	padding: 1px 4px;
+	background: yellow;
+	color: midnightblue;
+	text-shadow: none;
+	border-radius: 5px;
+}
+
+.ui-draggable-dragging {
+	opacity: 0.8;
+}

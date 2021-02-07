@@ -1,0 +1,104 @@
+#ofelimo {
+	position: relative;
+}
+
+.odigiesArea {
+	position: relative;
+	margin-left: 50px;
+	max-width: 21cm;
+}
+
+li {
+	margin-top: 0.1cm;
+	line-height: 150%;
+}
+
+.odigiesTutorialVideos {
+	display: inline-block;
+	transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	background-color: #FFFFFF;
+}
+
+.odigiesTutorialVideos0 {
+	display: inline-block;
+	transform: rotate(-2deg);
+	-moz-transform: rotate(-2deg);
+	-webkit-transform: rotate(-2deg);
+	-o-transform: rotate(-2deg);
+	-ms-transform: rotate(-2deg);
+	background-color: #FFFF99;
+}
+
+.odigiesTutorialVideos1 {
+	display: inline-block;
+	transform: rotate(2deg);
+	-moz-transform: rotate(2deg);
+	-webkit-transform: rotate(2deg);
+	-o-transform: rotate(2deg);
+	-ms-transform: rotate(2deg);
+	background-color: #FFFF99;
+}
+
+.odigiesPeriexomena {
+	background-color: #FFFFFF;
+	line-height: 150%;
+}
+
+.odigiesTitlos {
+	background-color: #FFFFFF;
+	font-weight: bold;
+	font-size: 120%;
+	margin-top: 0.4cm;
+}
+
+.odigiesIpotitlos {
+	background-color: #FFFFFF;
+	font-weight: normal;
+	font-size: 100%;
+	margin-bottom: 0.1cm;
+	text-decoration: underline;
+}
+
+.odigiesKimeno {
+	background-color: #FFFFFF;
+	line-height: 150%;
+	text-align: justify;
+	margin-top: 0.2cm;
+	margin-bottom: 0.4cm;
+	vertical-align: top;
+}
+
+.odigiesIcon {
+	background-color: #FFFFFF;
+	width: 1.2cm;
+	margin-top: 0.2cm;
+	display: inline;
+}
+
+.odigiesIconInline {
+	background-color: #FFFFFF;
+	width: 1.2em;
+	max-height: 0.6cm;
+	margin-bottom: -0.1cm;
+}
+
+.odigiesIconColumn {
+	width: 2.2cm;
+	vertical-align: top;
+}
+
+.odigiesPara {
+	width: 100%;
+	border-style: solid;
+	border-width: 0px 0px 1px 0px;
+	border-color: #E0E0D1;
+	margin-bottom: 3px;
+}
+
+#odigiesEnimerotiko {
+	display: none;
+}

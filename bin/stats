@@ -1,0 +1,189 @@
+#!/usr/bin/env bash
+
+# Το πρόγραμμα παράγει στατιστικά στοιχεία παρτίδας για τις παρτίδες που διαβάζει
+# από το standard input ή από τα files που καθορίζονται στο command line.
+#
+# Με την option -D το πρόγραμμα παράγει πλήρη στοιχεία παρτίδας για κάθε παρτίδα.
+# Αυτά τα στοιχεία μπορούν να χρησιμοποιηθούν αργότερα για την παραγωγή διαφόρων
+# στατιστικών στοιχείων, κατά παίκτη, κατά ημέρα κλπ. Ο κωδικός παρτίδας πρέπει
+# να βρίσκεται στην πρώτη στήλη του input αλλά μπορούμε να καθορίσουμε άλλη στήλη
+# με την option -c.
+#
+# Με την option -S το πρόγραμμα διαβάζει πλήρη στοιχεία παρτίδων και παράγει στατιστικά
+# στοιχεία κατά παίκτη γι' αυτές τις παρτίδες. Τα πλήρη στοιχεία παρτίδας παράγονται
+# από το παρόν πρόγραμμα με την option -D.
+#
+# Με την option -T το πρόγραμμα διαβάζει πλήρη στοιχεία παρτίδων και παράγει στατιστικά
+# στοιχεία που αφορούν στο χρόνο στησίματος της παρτίδας (έτος, μήνας, ημέρα και ώρα).
+#
+# Αν δεν δοθούν options -D, -S και -T, το πρόγραμμα επιτελεί τις λειτουργίες -D και -S
+# στη σειρά, παράγοντας στατιστικά στοιχεία κατά παίκτη για τις παρτίδες που διαβάζει.
+
+progname="prefadoros::`basename $0`"
+
+[ -n "${PREFADOROS}" ] || {
+	echo "${progname}: PREFADOROS: environment variable not set" >&2
+	exit 2
+}
+
+[ -d "${PREFADOROS}" ] || {
+	echo "${progname}: ${PREFADOROS}: directory not found" >&2
+	exit 2
+}
+
+usage() {
+	echo "usage: ${progname} [OPTIONS] [files...]
+       ${progname} -D [OPTIONS] [files...]
+       ${progname} -S [OPTIONS] [files...]
+       ${progname} -T [OPTIONS] [files...]
+
+Options:
+-D	Διαβάζει κωδικούς παρτίδων και παράγει πρωτογενή στοιχεία παρτίδας
+	για κάθε παρτίδα.
+
+-S	Διαβάζει αρχεία παρτίδων και παράγει στατιστικά στοιχεία κατά παίκτη.
+
+-T	Διαβάζει αρχεία παρτίδων και παράγει στατιστικά στοιχεία που αφορούν
+	στο χρόνο στησίματος των παρτίδων.
+
+-r	Καθορίζουμε εγγράψιμο file στο οποίο θα καταγραφούν στοιχεία βαθμολογίας
+	για κάθε παρτίδα και για κάθε παίκτη.
+
+-P	Καθορίζουμε παίκτες με βάση τη συμμετοχή των οποίων θα «φιλτραριστούν»
+	οι παρτίδες. Μπορούμε να χρησιμοποιήσουμε την option -P περισσότερες
+	από μια φορές προκειμένου να καθορίσουμε πολλούς παίκτες, μπορούμε
+	όμως να καθορίσουμε και περισσότερους από έναν παίκτες κάθε φορά
+	χρησιμοποιώντας κόμματα ή κενά.
+
+-f	Στα στατιστικά στοιχεία ΔΕΝ συμπεριλαμβάνονται by default οι φιλικές
+	παρτίδες. Με την option -f συμπεριλαμβάνονται ΚΑΙ οι φιλικές παρτίδες.
+
+-p	By default τα στατιστικά στοιχεία αφορούν τις παρτίδες στις οποίες
+	ΔΕΝ παίζεται το πάσο. Αν χρησιμοποιήσουμε την option -p γίνεται το
+	αντίθετο, ήτοι παράγονται στατιστικά στοιχεία που αφορούν ΜΟΝΟ τις
+	παρτίδες στις οποίες παίζεται το πάσο.
+
+-a	Παράγονται στατιστικά στοιχεία που αφορούν ΟΛΕΣ τις παρτίδες ανεξαρτήτως
+	αν παίζεται το πάσο ή όχι.
+
+-d	Στα στατιστικά στοιχεία κατά παίκτη συμπεριλαμβάνονται μόνο οι παίκτες
+	που έχουν παίξει από κάποιο πλήθος διανομών και πάνω. Με την option -d
+	μπορούμε να καθορίσουμε διαφορετικό ελάχιστο όριο διανομών.
+
+-c	Στήλη κωδικού παρτίδας (default 1).
+
+-n	Ελάχιστο πλήθος διανομών ανά παρτίδα (default 12).
+" >&2
+	exit 1
+}
+
+mode="full"
+opts=
+
+tcol="1"	# στήλη κωδικού παρτίδας στο input
+pardia="12"	# ελάχιστο πλήθος διανομών ανά παρτίδα
+filiki=		# δεν θα συμπεριληφθούν οι φιλικές παρτίδες
+paso=		# μόνο παρτίδες στις οποίες δεν παίζεται το πάσο
+pekdia="100"	# ελάχιστο πλήθος διανομών παίκτη
+pektes=		# παίκτες οι οποίοι θα πρέπει να συμμετέχουν
+rankfile=	# όνομα εγγράψιμου αρχείου βαθμολογίας
+
+errs=
+erru=
+
+while getopts ":DSTP:fpad:c:n:r:" arg
+do
+	case "${arg}" in
+	D)
+		mode="data"
+		;;
+	S)
+		mode="pektis"
+		;;
+	T)
+		mode="stisimo"
+		;;
+	P)
+		pektes="${pektes},${OPTARG}"
+		;;
+	f)
+		filiki=1	# θα συμπεριληφθούν και οι φιλικές παρτίδες
+		opts="${opts} -f"
+		;;
+	p)
+		paso=1		# μόνο παρτίδες στις οποίες παίζεται το πάσο
+		opts="${opts} -p"
+		;;
+	a)
+		paso=2		# όλες οι παρτίδες ανεξαρτήτως αν παίζεται ή όχι το πάσο
+		opts="${opts} -a"
+		;;
+	d)
+		if [ \( "${OPTARG}" -eq "${OPTARG}" \) -a \( "${OPTARG}" -ge 0 \) ] 2>/dev/null; then
+			pekdia="${OPTARG}"
+			opts="${opts} -d ${OPTARG}"
+		else
+			echo "${progname}: ${OPTARG}: λανθασμένο πλήθος ελάχιστων διανομών" >&2
+			errs="yes"
+		fi
+		;;
+	c)
+		if [ \( "${OPTARG}" -eq "${OPTARG}" \) -a \( "${OPTARG}" -gt 0 \) ] 2>/dev/null; then
+			tcol="${OPTARG}"
+		else
+			echo "${progname}: ${OPTARG}: λανθασμένη στήλη κωδικού παρτίδας" >&2
+			errs="yes"
+		fi
+		;;
+	n)
+		if [ \( "${OPTARG}" -eq "${OPTARG}" \) -a \( "${OPTARG}" -ge 0 \) ] 2>/dev/null; then
+			pardia="${OPTARG}"
+			opts="${opts} -n ${OPTARG}"
+		else
+			echo "${progname}: ${OPTARG}: λανθασμένο ελάχιστο πλήθος διανομών ανά παρτίδα" >&2
+			errs="yes"
+		fi
+		;;
+	r)
+		rankfile="${OPTARG}"
+		if [ -f "${rankfile}" ]; then
+			echo "${progname}: ${rankfile}: file exists" >&2
+			errs="yes"
+		fi
+		;;
+	\?)
+		echo "${progname}: ${OPTARG}: invalid option" >&2
+		erru="yes"
+		;;
+	esac
+done
+
+[ -n "${erru}" ] && usage
+[ -n "${errs}" ] && exit 1
+
+shift `expr ${OPTIND} - 1`
+
+[ -n "${pektes}" ] && pektes=`echo ${pektes} | sed 's;^,*;;'`
+
+set -o pipefail
+
+case "${mode}" in
+data)
+	awk -v tcol="${tcol}" -f "${PREFADOROS}/src/stats/kodikos.awk" $* |\
+		php "${PREFADOROS}/src/stats/main.php" |\
+		awk -v pektes="${pektes}" -f "${PREFADOROS}/src/stats/pfilter.awk"
+	;;
+pektis)
+	exec awk -f "${PREFADOROS}/src/stats/pektis.awk" -v pektes="${pektes}" \
+		-v filiki="${filiki}" -v paso="${paso}" -v pekdia="${pekdia}" \
+		-v pardia="${pardia}" -v rankfile="${rankfile}" $*
+	;;
+stisimo)
+	awk -f "${PREFADOROS}/src/stats/stisimo1.awk" -v pektes="${pektes}" \
+		-v filiki="${filiki}" -v paso="${paso}" -v pardia="${pardia}" $* |\
+		sort -n | awk -f "${PREFADOROS}/src/stats/stisimo2.awk"
+	;;
+*)
+	"${PREFADOROS}/bin/stats" -D -c "${tcol}" -P "${pektes}" $* | "${PREFADOROS}/bin/stats" -S ${opts}
+	;;
+esac

@@ -1,0 +1,21 @@
+.welcome_paragrafos {
+	line-height: 150%;
+	width: 90%;
+	margin: 0 auto;
+	padding: 5px 0;
+	text-align: justify;
+}
+
+.welcome_prive {
+	margin-top: 10px;
+	padding: 8px 10px;
+	border-radius: 10px;
+}
+
+.welcome_prive a {
+	color: #C0FFE8;
+}
+
+.welcome_prive a:hover {
+	color: #0A1569;
+}
