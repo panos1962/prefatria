@@ -6,19 +6,19 @@ all:
 	@(cd client/movie && make -s)
 
 status:
-	hg status
+	git status
 
 diff:
-	hg diff
+	git diff
 
 pull:
-	hg pull --update
+	git pull
 
 commit:
-	hg commit -m "modifications"
+	git commit -m "modifications" .
 
 push:
-	hg push
+	git push
 
 check:
 	@find . -name '*.min.js' -type f -print
