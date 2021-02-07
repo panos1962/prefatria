@@ -12,6 +12,8 @@ stats/etos.list
 stats/etos/*
 stats/rank/*
 stats/www/*
+client/depo/*
+client/filajs
 client/photo/?/*
 client/movie/Boss!
 client/site/motd.php
