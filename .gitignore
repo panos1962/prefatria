@@ -5,6 +5,7 @@
 *.min.js
 panos[0-9]*
 log/*
+!log/README.txt
 misc/.mistiko
 rcLocal.js
 rcLocalDevel.js
