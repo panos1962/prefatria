@@ -6,7 +6,7 @@
 // «Πρεφαδόρου». Πρόκειται για εξωτερική σελίδα που περιέχει χρήσιμες πληροφορίες
 // και links.
 
-define("KENTRO_IPOSTIRIXIS", "http://www.prefadoros.net");
+define("KENTRO_IPOSTIRIXIS", "https://sites.google.com/a/prefadoros.net/main/");
 
 // Η συμβολική σταθερά "OWNER_ONOMA" περιέχει το ονοματεπώνυμο του κατέχοντος
 // το copyright της εφαρμογής.
