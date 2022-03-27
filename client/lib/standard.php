@@ -139,7 +139,8 @@ class Globals {
 			self::$filajs = "http://" . $server_name . "/filajs/";
 			break;
 		case "www.opasopa.net":
-			self::$server = "http://" . $server_name . "/prefatria/";
+		case "opasopa.net":
+			self::$server = "http://" . $server_name . "/prefa/";
 			break;
 		case "5.9.24.181":
 			self::$server = "http://" . $server_name . "/prefadoros/";
