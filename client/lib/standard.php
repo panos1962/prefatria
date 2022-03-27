@@ -186,11 +186,12 @@ class Globals {
 		case "http://127.0.0.1/prefatria/";
 		case "http://localhost/prefatria/";
 		case "http://www.prefadoros.gr/":
-		case "http://www.opasopa.net/prefatria/":
 		case "http://5.9.24.181/prefadoros/":
 		case "http://www.prefadoros.com/":
 		case "http://www.prefadoros.org/":
 		case "http://prefadoros.gr/":
+		case "http://opasopa.net/prefa/":
+		case "http://www.opasopa.net/prefa/":
 			break;
 		case "http://www.prefaprive.net/":
 			$dbname = "prefaprive";
