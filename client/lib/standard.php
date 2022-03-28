@@ -69,6 +69,8 @@ class Globals {
 
 	private static $protocol;
 
+	private static $server_name;
+
 	// Η property "server" περιέχει το URL του home directory του server
 	// στον οποίο βρίσκεται η εφαρμογή. Πρέπει να τελειώνει με "/", καθώς
 	// θα κολλήσουμε subdirectories και file names προκειμένου να
