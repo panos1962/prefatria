@@ -158,6 +158,9 @@ class Globals {
 			self::klise_fige("unknown server");	
 		}
 
+		// Αν έχουμε κλήση με πρωτόκολλο HTTPS, τότε «γυρνάμε» σε HTTP,
+		// λόγω της δυσκολίας που έχω με τον node server.
+
 		if (isset($_SERVER['SERVER_PORT']) && ($_SERVER['SERVER_PORT'] == 443)) {
 			header("Location: " . self::$server);
 			exit(0);
