@@ -160,7 +160,7 @@ class Globals {
 		}
 
 		if (isset($_SERVER['SERVER_PORT']) && ($_SERVER['SERVER_PORT'] == 443)) {
-			header("Location :" . self::$server);
+			header("Location: " . self::$server);
 			exit(0);
 		}
 
