@@ -193,7 +193,7 @@ class Globals {
 		$dbname = "prefatria";
 		$dbuser = "prefadoros";
 
-		switch (self::$server_name)) {
+		switch (self::$server_name) {
 		case "127.0.0.1":
 		case "localhost";
 		case "5.9.24.181";
