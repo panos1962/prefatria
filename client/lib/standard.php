@@ -119,7 +119,6 @@ class Globals {
 
 		self::$session_ok = FALSE;
 		self::$klise_fige_ok = FALSE;
-		self::$server_name = NULL;
 		self::$server = NULL;
 		self::$skiser = NULL;
 		self::$ip = NULL;
@@ -129,33 +128,33 @@ class Globals {
 		if (!isset($_SERVER)) self::klise_fige("_SERVER: not set");
 		if (!is_array($_SERVER)) self::klise_fige("_SERVER: not an array");
 
-		self::$server_name = array_key_exists("HTTP_HOST", $_SERVER) ?
+		$server_name = array_key_exists("HTTP_HOST", $_SERVER) ?
 			$_SERVER["HTTP_HOST"] : "localhost";
-		self::$skiser = "http://" . self::$server_name;
+		self::$skiser = "http://" . $server_name;
 		self::$filajs = "http://www.prefadoros.gr/filajs/";
 
-		switch (self::$server_name) {
+		switch ($server_name) {
 		case "127.0.0.1":
 		case "localhost":
-			self::$server = "http://" . self::$server_name . "/prefatria/";
-			self::$filajs = "http://" . self::$server_name . "/filajs/";
+			self::$server = "http://" . $server_name . "/prefatria/";
+			self::$filajs = "http://" . $server_name . "/filajs/";
 			break;
 		case "www.opasopa.net":
 		case "opasopa.net":
-			self::$server = "http://" . self::$server_name . "/prefa/";
+			self::$server = "http://" . $server_name . "/prefa/";
 			break;
 		case "5.9.24.181":
-			self::$server = "http://" . self::$server_name . "/prefadoros/";
+			self::$server = "http://" . $server_name . "/prefadoros/";
 			break;
 		case "www.prefadoros.gr":
 		case "www.prefadoros.com":
 		case "www.prefadoros.org":
 		case "www.prefaprive.net":
 		case "prefadoros.gr":
-			self::$server = "http://" . self::$server_name . "/";
+			self::$server = "http://" . $server_name . "/";
 			break;
 		default:
-			if (self::$server_name) self::errmsg(self::$server_name . ": ");
+			if ($server_name) self::errmsg($server_name . ": ");
 			self::klise_fige("unknown server");	
 		}
 
@@ -189,14 +188,14 @@ class Globals {
 		$dbname = "prefatria";
 		$dbuser = "prefadoros";
 
-		switch (self::$server_name) {
-		case "127.0.0.1":
-		case "localhost";
-		case "5.9.24.181";
-		case "prefadoros.gr":
-		case "www.prefadoros.gr":
-		case "opasopa.net";
-		case "www.opasopa.net":
+		switch (self::$server) {
+		case "http://127.0.0.1/prefatria/":
+		case "http://localhost/prefatria/";
+		case "http://5.9.24.181/prefadoros/";
+		case "http://prefadoros.gr/":
+		case "http://www.prefadoros.gr/":
+		case "http://opasopa.net/prefa";
+		case "http://www.opasopa.net/prefa":
 			break;
 		default:
 			if (self::$server) self::errmsg(self::$server . ": ");
