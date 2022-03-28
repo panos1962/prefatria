@@ -194,8 +194,8 @@ class Globals {
 		case "http://5.9.24.181/prefadoros/";
 		case "http://prefadoros.gr/":
 		case "http://www.prefadoros.gr/":
-		case "http://opasopa.net/prefa";
-		case "http://www.opasopa.net/prefa":
+		case "http://opasopa.net/prefa/";
+		case "http://www.opasopa.net/prefa/":
 			break;
 		default:
 			if (self::$server) self::errmsg(self::$server . ": ");
