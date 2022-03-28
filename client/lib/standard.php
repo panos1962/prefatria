@@ -142,21 +142,21 @@ class Globals {
 
 		self::$server_name = array_key_exists("HTTP_HOST", $_SERVER) ?
 			$_SERVER["HTTP_HOST"] : "localhost";
-		self::$skiser = self::$protoccol . "://" . self::$server_name;
-		self::$filajs = self::$protoccol . "://www.prefadoros.gr/filajs/";
+		self::$skiser = self::$protocol . "://" . self::$server_name;
+		self::$filajs = self::$protocol . "://www.prefadoros.gr/filajs/";
 
 		switch (self::$server_name) {
 		case "127.0.0.1":
 		case "localhost":
-			self::$server = self::$protoccol . "://" . self::$server_name . "/prefatria/";
-			self::$filajs = self::$protoccol . "://" . self::$server_name . "/filajs/";
+			self::$server = self::$protocol . "://" . self::$server_name . "/prefatria/";
+			self::$filajs = self::$protocol . "://" . self::$server_name . "/filajs/";
 			break;
 		case "www.opasopa.net":
 		case "opasopa.net":
-			self::$server = self::$protoccol . "://" . self::$server_name . "/prefa/";
+			self::$server = self::$protocol . "://" . self::$server_name . "/prefa/";
 			break;
 		case "5.9.24.181":
-			self::$server = self::$protoccol . "://" . self::$server_name . "/prefadoros/";
+			self::$server = self::$protocol . "://" . self::$server_name . "/prefadoros/";
 			break;
 		case "www.prefadoros.gr":
 		case "www.prefadoros.com":
