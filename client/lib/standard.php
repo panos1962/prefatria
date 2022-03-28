@@ -64,13 +64,6 @@ class Globals {
 
 	private static $klise_fige_ok;
 
-	// Η property "protocol" περιέχει το πρωτόκολλο επικοινωνίας και
-	// είναι είτε "http" είτε "https".
-
-	private static $protocol;
-
-	private static $server_name;
-
 	// Η property "server" περιέχει το URL του home directory του server
 	// στον οποίο βρίσκεται η εφαρμογή. Πρέπει να τελειώνει με "/", καθώς
 	// θα κολλήσουμε subdirectories και file names προκειμένου να
@@ -126,7 +119,6 @@ class Globals {
 
 		self::$session_ok = FALSE;
 		self::$klise_fige_ok = FALSE;
-		self::$protocol = "http";
 		self::$server_name = NULL;
 		self::$server = NULL;
 		self::$skiser = NULL;
@@ -137,37 +129,39 @@ class Globals {
 		if (!isset($_SERVER)) self::klise_fige("_SERVER: not set");
 		if (!is_array($_SERVER)) self::klise_fige("_SERVER: not an array");
 
-		if (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)
-		self::$protocol = "https";
-
 		self::$server_name = array_key_exists("HTTP_HOST", $_SERVER) ?
 			$_SERVER["HTTP_HOST"] : "localhost";
-		self::$skiser = self::$protocol . "://" . self::$server_name;
-		self::$filajs = self::$protocol . "://www.prefadoros.gr/filajs/";
+		self::$skiser = "http://" . self::$server_name;
+		self::$filajs = "http://www.prefadoros.gr/filajs/";
 
 		switch (self::$server_name) {
 		case "127.0.0.1":
 		case "localhost":
-			self::$server = self::$protocol . "://" . self::$server_name . "/prefatria/";
-			self::$filajs = self::$protocol . "://" . self::$server_name . "/filajs/";
+			self::$server = "http://" . self::$server_name . "/prefatria/";
+			self::$filajs = "http://" . self::$server_name . "/filajs/";
 			break;
 		case "www.opasopa.net":
 		case "opasopa.net":
-			self::$server = self::$protocol . "://" . self::$server_name . "/prefa/";
+			self::$server = "http://" . self::$server_name . "/prefa/";
 			break;
 		case "5.9.24.181":
-			self::$server = self::$protocol . "://" . self::$server_name . "/prefadoros/";
+			self::$server = "http://" . self::$server_name . "/prefadoros/";
 			break;
 		case "www.prefadoros.gr":
 		case "www.prefadoros.com":
 		case "www.prefadoros.org":
 		case "www.prefaprive.net":
 		case "prefadoros.gr":
-			self::$server = self::$protocol . "://" . self::$server_name . "/";
+			self::$server = "http://" . self::$server_name . "/";
 			break;
 		default:
 			if (self::$server_name) self::errmsg(self::$server_name . ": ");
 			self::klise_fige("unknown server");	
+		}
+
+		if (isset($_SERVER['SERVER_PORT']) && ($_SERVER['SERVER_PORT'] == 443)) {
+			header("Location :" . self::$server);
+			exit(0);
 		}
 
 		self::get_client_ip();
