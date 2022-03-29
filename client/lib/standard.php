@@ -16,12 +16,12 @@ define("OWNER_ONOMA", "Panos I. Papadopoulos");
 // Η συμβολική σταθερά "OWNER_EMAIL" περιέχει το email του κατέχοντος
 // το copyright της εφαρμογής.
 
-define("OWNER_EMAIL", "panos@prefadoros.net");
+define("OWNER_EMAIL", "prefadoros@hotmail.com");
 
 // Η συμβολική σταθερά "SUPPORT_EMAIL" περιέχει το email της τεχνικής
 // υποστήριξης της εφαρμογής.
 
-define("SUPPORT_EMAIL", "support@prefadoros.net");
+define("SUPPORT_EMAIL", "prefadoros@hotmail.com");
 
 // Η συμβολική σταθερά "VIDA" περιέχει το URL της βίδας.
 
