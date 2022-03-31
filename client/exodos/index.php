@@ -8,7 +8,7 @@ unset($_SESSION["klidi"]);
 </head>
 <body>
 <meta http-equiv="refresh" content="0; URL=<?php
-print $_REQUEST["url"];
+print (Globals::perastike("url") ? $_REQUEST["url"] : Globals::$server);
 ?>" />
 </body>
 </html>
