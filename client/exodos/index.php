@@ -8,7 +8,7 @@ unset($_SESSION["klidi"]);
 </head>
 <body>
 <meta http-equiv="refresh" content="0; URL=<?php
-print (Globals::perastike("url") ? $_REQUEST["url"] : Globals::$server);
+print (Globals::perastike("url") ? $_REQUEST["url"] : "http://prefadoros.gr");
 ?>" />
 </body>
 </html>
