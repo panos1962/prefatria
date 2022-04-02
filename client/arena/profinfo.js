@@ -82,6 +82,9 @@ Pektis.prototype.pektisFormaPopupDOM = function(e) {
 	done(function(rsp) {
 		var i;
 
+		if (!rsp.hasOwnProperty('peparam'))
+		rsp.peparam = {};
+
 		try {
 			rsp = ('{' + rsp + '}').evalAsfales();
 			pektis.profinfo = rsp.profinfo;
