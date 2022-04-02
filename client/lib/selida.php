@@ -325,12 +325,14 @@ class Selida {
 
 		?><br /><?php
 
+		/*
 		if (Globals::is_pektis()) {
 			self::tab_begin();
 			?><a target="stats" title="Στατιστικά & αξιολόγηση" href="<?php
 				Globals::url("stats/index.php"); ?>">Στατιστικά</a><?php
 			self::tab_end();
 		}
+		*/
 
 		self::tab_begin();
 		?><a target="vida" id="vidaLink" title="Παίξτε μπουρλότο και βίδα!" href="<?php print VIDA;
