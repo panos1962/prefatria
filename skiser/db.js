@@ -274,7 +274,8 @@ DBSindesi.prototype.query = function(query, callback) {
 	this.connection.query(query, function(err, res) {
 		if (err) {
 			switch (err.code) {
-			case 'ER_NO_REFERENCED_ROW_':
+			case 'ER_NO_REFERENCED_ROW':
+			case 'ER_NO_REFERENCED_ROW_2':
 			case 'ER_LOCK_DEADLOCK':
 				conn.affectedRows = 0;
 				delete conn.insertId;
