@@ -17,13 +17,14 @@ client/depo/*
 client/filajs
 client/photo/?/*
 client/movie/Boss!
+client/site/misc
 client/site/motd.php
 client/site/diafimisi.php
 client/site/welcome.php
-client/arxio/rcArxio.php
-client/lib/chartist.css
-client/lib/chartist.js
 client/site/stats
 client/site/stats/pektis/*
 client/site/stats/stisimo/*
+client/arxio/rcArxio.php
+client/lib/chartist.css
+client/lib/chartist.js
 database/ananeosi/*.data
