@@ -9,4 +9,3 @@ Startup icons
 ο εκκινητής στο launcher, π.χ.
 
 	ln -s /home/Desktop/prefadoros.desktop /home/panos/.local/share/applications/
-TEST
