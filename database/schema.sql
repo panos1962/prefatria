@@ -4,8 +4,8 @@ DROP DATABASE IF EXISTS `prefatria`
 -- Με το παρόν κατασκευάζουμε την database.
 
 CREATE DATABASE `prefatria`
-DEFAULT CHARSET = utf8
-DEFAULT COLLATE = utf8_general_ci
+DEFAULT CHARSET = utf8mb4
+DEFAULT COLLATE = utf8mb4_general_ci
 ;
 
 \! echo "database created!"
