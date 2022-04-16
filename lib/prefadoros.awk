@@ -12,7 +12,7 @@ BEGIN {
 
 	spawk_sesami["dbuser"] = "prefadoros"
 	spawk_sesami["dbname"] = "prefatria"
-	spawk_sesami["dbcharset"] = "utf8"
+	spawk_sesami["dbcharset"] = "utf8mb4"
 	set_password()
 
 	prefa_setup()

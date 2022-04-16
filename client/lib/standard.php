@@ -212,7 +212,7 @@ class Globals {
 		$bekadb = preg_replace("/[^a-zA-Z0-9]/", "", @file_get_contents(self::$www . "misc/.mistiko/bekadb"));
 		self::$db = @new mysqli($dbhost, $dbuser, $bekadb, $dbname);
 		self::$db->connect_errno && die("database connection failed (" . self::$db->connect_error . ")");
-		@self::$db->set_charset("utf8") || self::klise_fige("cannot set character set (database)");
+		@self::$db->set_charset("utf8mb4") || self::klise_fige("cannot set character set (database)");
 	}
 
 	// Η μέθοδος "session_init" ενεργοποιεί το session και είναι καλό να καλείται
