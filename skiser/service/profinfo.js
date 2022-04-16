@@ -29,12 +29,7 @@ Service.profinfo.get = function(nodereq) {
 		login: login,
 	}));
 
-	// Η επόμενη γραμμή αφορά στη βαθμολογία και ως εκ τούτου έχει
-	// αντικατασταθεί η function "get2" απευθείας με την "get3".
-
-	// Service.profinfo.get2(nodereq, login, slogin, pektis);
-
-	Service.profinfo.get3(nodereq, login, slogin, pektis);
+	Service.profinfo.get2(nodereq, login, slogin, pektis);
 };
 
 Service.profinfo.get2 = function(nodereq, login, slogin, pektis) {
