@@ -399,7 +399,7 @@ body {
 	content: '#';
 	font-weight: normal;
 	color: rgba(0, 0, 0, 0.50);
-	padding: 2px 3px 0 3px;
+	padding: 2px 0 0 0;
 }
 
 .trapeziDataProsklisi {
