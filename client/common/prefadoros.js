@@ -116,26 +116,6 @@ Prefadoros.thesiWalk(function(thesi) {
 	Prefadoros.thesiValid[thesi] = parseInt(thesi);
 });
 
-Prefadoros.apodosi2string = function(kapikia, dianomes) {
-	var apodosi = '?';
-
-	kapikia = parseFloat(kapikia);
-
-	if (isNaN(kapikia))
-	return apodosi;
-
-	dianomes = parseInt(dianomes);
-
-	if (isNaN(dianomes))
-	return apodosi;
-
-	if (dianomes <= 0)
-	return apodosi;
-
-	apodosi = (dianomes >= 1000 ? kapikia :(kapikia * dianomes) / 1000.0);
-	return apodosi.toFixed(2);
-};
-
 // Η μέθοδος "epomeniThesi" εφαρμόζεται πάνω στη θέση κάποιου παίκτη και
 // επιστρέφει την επόμενη θέση.
 

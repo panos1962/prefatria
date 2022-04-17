@@ -732,39 +732,23 @@ Pektis.prototype.pektisFyiInfo = function() {
 };
 
 Pektis.prototype.pektisFyiInfoRank = function() {
-	var msg, rank, apodosi;
+	var msg, apodosi, kapikia, dianomes;
 
 	msg = '';
-	rank = this.pektisPeparamGet('ΒΑΘΜΟΛΟΓΙΑ');
+	apodosi = new Apodosi(this.pektisPeparamGet('ΒΑΘΜΟΛΟΓΙΑ'));
 
-	if (!rank)
+	kapikia = apodosi.apodosiKapikiaGet();
+	dianomes = apodosi.apodosiDianomesGet();
+
+	if (dianomes <= 0)
 	return msg;
-
-	rank = rank.split('#');
-
-	if (rank.length != 2)
-	return msg;
-
-	rank[0] = parseFloat(rank[0]);
-
-	if (isNaN(rank[0]))
-	return msg;
-
-	rank[1] = parseInt(rank[1]);
-
-	if (isNaN(rank[1]) || (rank[1] <= 0))
-	return msg;
-
-	apodosi = Prefadoros.apodosi2string(rank[0], rank[1]);
 
 	msg = ', απόδοση: <span class="entona ';
-	msg += (rank[0] >= 0 ? 'prasino' : 'kokino') + '">';
-	msg += apodosi + '</span> από ';
+	msg += (kapikia >= 0.0 ? 'prasino' : 'kokino') + '">';
+	msg += kapikia.toFixed(2) + '</span> από ';
 
-	if (rank[1] > 1) {
-		msg += 'τις τελευταίες <span class="entona">';
-		msg += rank[1] + '</span> παιγμένες διανομές';
-	}
+	if (dianomes > 1)
+	msg += '<span class="entona">' + dianomes + '</span> παιγμένες διανομές';
 
 	else
 	msg += 'την τελευταία διανομή';

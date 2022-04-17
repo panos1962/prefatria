@@ -635,7 +635,7 @@ Skiniko.prototype.processKinisiPD = function(data) {
 	bidx = 'ΒΑΘΜΟΛΟΓΙΑ';
 
 	Prefadoros.thesiWalk(function(thesi) {
-		var pektis, bathmologia, apodosi, dianomes;
+		var pektis, apodosi;
 
 		pektis = trapezi['pektis' + thesi];
 
@@ -653,25 +653,10 @@ Skiniko.prototype.processKinisiPD = function(data) {
 		if (!pektis.peparam.hasOwnProperty(bidx))
 		pektis.peparam[bidx] = '0#0';
 
-		bathmologia = pektis.peparam[bidx].split('#');
+		apodosi = (new Apodosi(pektis.peparam[bidx])).
+		apodosiAdd(kapikia[thesi]);
 
-		if (bathmologia.length != 2)
-		bathmologia = [ 0.0, 0 ];
-
-		apodosi = parseFloat(bathmologia[0]);
-
-		if (isNaN(apodosi))
-		apodosi = 0.0;
-
-		dianomes = parseInt(bathmologia[1]);
-
-		if (isNaN(dianomes) || (dianomes < 0))
-		dianomes = 0;
-
-		apodosi = (apodosi * dianomes) + kapikia[thesi];
-		dianomes++;
-
-		pektis.peparam[bidx] = (apodosi / dianomes) + '#' + dianomes;
+		pektis.peparam[bidx] = apodosi.apodosi2string();
 	});
 
 	return this;

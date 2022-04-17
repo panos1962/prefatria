@@ -701,39 +701,32 @@ Arena.pektisPanelRefreshDOM = function() {
 };
 
 Arena.pektisPanelRankRefreshDOM = function(pektis) {
-	var rank, x, dom, opa, apodosi;
+	var apodosi, kapikia, dianomes, tit, dom, opa;
 
-	rank = pektis.pektisPeparamGet('ΒΑΘΜΟΛΟΓΙΑ');
+	apodosi = new Apodosi(pektis.pektisPeparamGet('ΒΑΘΜΟΛΟΓΙΑ'));
+	kapikia = apodosi.apodosiKapikiaGet();
+	dianomes = apodosi.apodosiDianomesGet();
 
-	if (!rank)
+	if (dianomes < 1)
 	return Arena;
 
-	x = rank.split('#');
+	tit = 'Ενδεικτική απόδοση από ';
 
-	if (x.length !== 2)
-	return Arena;
+	if (dianomes > 1)
+	tit += dianomes + ' παιγμένες διανομές';
 
-	x[0] = parseFloat(x[0]);
-
-	if (isNaN(x[0]))
-	return Arena;
-
-	x[1] = parseInt(x[1]);
-
-	if (isNaN(x[1]))
-	return Arena;
-
-	apodosi = Prefadoros.apodosi2string(x[0], x[1]);
+	else
+	tit += 'την τελευταία παιγμένη διανομή';
 
 	Arena.pektisFormaBaraDOM.append(dom = $('<div>').
-	addClass('pektisPanelRank ' + (x[0] < 0 ? 'kokino' : 'prasino')).
-	attr('title', 'Ενδεικτική απόδοση από τις τελευταίες ' + x[1] + ' διανομές').
-	text(apodosi));
+	addClass('pektisPanelRank ' + (kapikia < 0 ? 'kokino' : 'prasino')).
+	attr('title', tit).
+	text(kapikia.toFixed(2)));
 
-	if (x[1] >= 1000)
+	if (dianomes >= Apodosi.dianomesAnagogi)
 	return Arena;
 
-	opa = x[1] / 1000;
+	opa = dianomes / Apodosi.dianomesAnagogi;
 
 	if (opa < 0.3)
 	opa = 0.3;

@@ -1554,6 +1554,137 @@ Arvila.prototype.arvilaProsGet = function() {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// Τα αντικείμενα τύπου "Apodosi" αφορούν στη βαθμολογία (αξιολόγηση) των
+// παικτών. Η βαθμολογία εγγράφεται στην παράμετρο παίκτη "ΒΑΘΜΟΛΟΓΙΑ" ως
+// string της μορφής "Κ#Δ", όπου "Κ" είναι ένας δεκαδικός αριθμός (θετικός
+// ή αρνητικός) που δείχνει τον μέσο όρο καπικιών που φαίνεται να κερδίζει
+// ή να χάνει ο παίκτης σε κάθε παιγμένη διανομή. Το "Δ" είναι ένας ακέραιος
+// αριθμός που δείχνει το πλήθος των διανομών που λήφθηκαν υπόψιν στον
+// υπολογισμό της συγκεκριμένης εκτίμησης.
+
+Apodosi = function(s) {
+	this.string2apodosi(s);
+};
+
+Apodosi.prototype.string2apodosi = function(s) {
+	if (s === undefined)
+	return this.apodosiMidenismos();
+
+	if (typeof(s) !== 'string')
+	return this.apodosiMidenismos();
+
+	s = s.split('#');
+
+	if (s.length !== 2)
+	return this.apodosiMidenismos();
+
+	return this.
+	apodosiKapikiaSet(s[0]).
+	apodosiDianomesSet(s[1]).
+	apodosiCheck();
+};
+
+// Η σταθερά "dianomesAnagogi" είναι ένα πλήθος διανομών με βάση το οποίο
+// υπολογίζεται η απόδοση του παίκτη. Όσο μεγαλύτερο είναι το πλήθος αυτό
+// τόσο πιο αργά αλλάζει η βαθμολογία.
+
+Apodosi.dianomesAnagogi = 1000;
+
+Apodosi.prototype.apodosiKapikiaSet = function(kapikia) {
+	this.kapikia = kapikia;
+	return this;
+};
+
+Apodosi.prototype.apodosiDianomesSet = function(dianomes) {
+	this.dianomes = dianomes;
+	return this;
+};
+
+Apodosi.prototype.apodosiKapikiaGet = function() {
+	return this.kapikia;
+};
+
+Apodosi.prototype.apodosiDianomesGet = function() {
+	return this.dianomes;
+};
+
+// Η μέθοδος "apodosiCheck" ελέγχει την ορθότητα της απόδοσης. Αν τα στοιχεία
+// απόδοσης δεν είναι ορθά, τότε η απόδοση μηδενίζεται.
+
+Apodosi.prototype.apodosiCheck = function() {
+	var kapikia, dianomes;
+
+	kapikia = parseFloat(this.apodosiKapikiaGet());
+
+	if (isNaN(kapikia))
+	return this.apodosiMidenismos();
+
+	dianomes = parseInt(this.apodosiDianomesGet());
+
+	if (isNaN(dianomes))
+	return this.apodosiMidenismos();
+
+	if (dianomes < 1)
+	return this.apodosiMidenismos();
+
+	return this.
+	apodosiKapikiaSet(kapikia).
+	apodosiDianomesSet(dianomes);
+};
+
+Apodosi.prototype.apodosiMidenismos = function() {
+	return this.
+	apodosiKapikiaSet(0.0).
+	apodosiDianomesSet(0);
+};
+
+// Η μέθοδος "apodosiAdd" ενημερώνει τη βαθμολογία του παίκτη στο σκηνικό,
+// μετά από μια διανομή. Ως παράμετρο δέχεται τα καπίκια που κέρδισε ή έχασε
+// ο παίκτης στην εν λόγω διανομή.
+
+Apodosi.prototype.apodosiAdd = function(x) {
+	var kapikia, dianomes;
+
+	this.apodosiCheck();
+
+	x = parseFloat(x);
+
+	if (isNaN(x))
+	return this;
+
+	kapikia = this.apodosiKapikiaGet();
+	dianomes = this.apodosiDianomesGet();
+
+	// Στο σημείο αυτό κάνουμε αναγωγή στον προκαθορισμένο αριθμό
+	// διανομών προκειμένου τα καπίκια της τρέχουσας διανομής να
+	// επηρεάσουν τη βαθμολογία ασχέτως του πλήθους των διανομών
+	// που έχει παίξει ο παίκτης.
+
+	kapikia *= Apodosi.dianomesAnagogi;
+
+	// Ποσθέτουμε ή αφαιρούμε τα καπίκια της τρέχουσας διανομής
+	// και βγάζουμε νέο μέσο όρο (βαθμολογία).
+
+	x = (kapikia + x) / (Apodosi.dianomesAnagogi + 1);
+
+	return this.
+	apodosiKapikiaSet(x).
+	apodosiDianomesSet(dianomes + 1);
+};
+
+Apodosi.prototype.apodosi2string = function() {
+	var kapikia, dianomes;
+
+	this.apodosiCheck();
+
+	kapikia = this.apodosiKapikiaGet();
+	dianomes = this.apodosiDianomesGet();
+
+	return kapikia + '#' + dianomes;
+};
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 Minima = function(props) {
 	Globals.initObject(this, props);
 };
