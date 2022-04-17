@@ -1285,11 +1285,15 @@ Trapezi.prototype.telefteaPliromiSet = function(posa) {
 
 		idx = 'metrita' + thesi;
 		posa[idx] = parseInt(posa[idx]);
-		if (posa[idx]) kapikia[thesi] += posa[idx];
+
+		if (posa[idx])
+		kapikia[thesi] += posa[idx];
 
 		idx = 'kasa' + thesi;
 		posa[idx] = parseInt(posa[idx]);
-		if (!posa[idx]) return;
+
+		if (!posa[idx])
+		return;
 
 		kasa = posa[idx] * 2.0 / 3.0;
 		kapikia[thesi] += kasa;
