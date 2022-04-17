@@ -720,25 +720,56 @@ Skiniko.prototype.skinikoResetDOM = function() {
 };
 
 Pektis.prototype.pektisFyiInfo = function() {
-	var msg, rank;
+	var msg;
 
 	msg = 'Login: <span class="entona ble">' + this.pektisLoginGet() +
 		'</span>, Ονοματεπώνυμο: <span class="entona ble">' +
 		this.pektisOnomaGet() + '</span>';
-
-	rank = this.pektisPeparamGet('ΒΑΘΜΟΛΟΓΙΑ');
-
-	if (rank) {
-		rank = rank.split('#');
-
-		if (rank.length == 2)
-		msg += ', απόδοση: <span class="entona ' + (rank[0] >= 0 ? 'prasino' : 'kokino') +
-			'">' + rank[0] + '</span> από τις τελευταίες <span class="entona">' + rank[1] +
-			'</span> παιγμένες διανομές';
-	}
+	msg += this.pektisFyiInfoRank();
 
 	Client.fyi.pano('<div class="aristera">' + msg + '</div>');
 	return this;
+};
+
+Pektis.prototype.pektisFyiInfoRank = function() {
+	var msg, rank, apodosi;
+
+	msg = '';
+	rank = this.pektisPeparamGet('ΒΑΘΜΟΛΟΓΙΑ');
+
+	if (!rank)
+	return msg;
+
+	rank = rank.split('#');
+
+	if (rank.length != 2)
+	return msg;
+
+	rank[0] = parseFloat(rank[0]);
+
+	if (isNaN(rank[0]))
+	return msg;
+
+	rank[1] = parseInt(rank[1]);
+
+	if (isNaN(rank[1]) || (rank[1] <= 0))
+	return msg;
+
+	apodosi = Prefadoros.apodosi2string(rank[0], rank[1]);
+
+	msg = ', απόδοση: <span class="entona ';
+	msg += (rank[0] >= 0 ? 'prasino' : 'kokino') + '">';
+	msg += apodosi + '</span> από ';
+
+	if (rank[1] > 1) {
+		msg += 'τις τελευταίες <span class="entona">';
+		msg += rank[1] + '</span> παιγμένες διανομές';
+	}
+
+	else
+	msg += 'την τελευταία διανομή';
+
+	return msg;
 };
 
 Sinedria.prototype.sinedriaCreateDOM = function() {

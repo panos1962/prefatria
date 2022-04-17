@@ -701,7 +701,7 @@ Arena.pektisPanelRefreshDOM = function() {
 };
 
 Arena.pektisPanelRankRefreshDOM = function(pektis) {
-	var rank, x, dom, opa;
+	var rank, x, dom, opa, apodosi;
 
 	rank = pektis.pektisPeparamGet('ΒΑΘΜΟΛΟΓΙΑ');
 
@@ -714,12 +714,21 @@ Arena.pektisPanelRankRefreshDOM = function(pektis) {
 	return Arena;
 
 	x[0] = parseFloat(x[0]);
+
+	if (isNaN(x[0]))
+	return Arena;
+
 	x[1] = parseInt(x[1]);
+
+	if (isNaN(x[1]))
+	return Arena;
+
+	apodosi = Prefadoros.apodosi2string(x[0], x[1]);
 
 	Arena.pektisFormaBaraDOM.append(dom = $('<div>').
 	addClass('pektisPanelRank ' + (x[0] < 0 ? 'kokino' : 'prasino')).
 	attr('title', 'Ενδεικτική απόδοση από τις τελευταίες ' + x[1] + ' διανομές').
-	text(x[0].toFixed(2)));
+	text(apodosi));
 
 	if (x[1] >= 1000)
 	return Arena;

@@ -580,17 +580,98 @@ Skiniko.prototype.processKinisiEG = function(data) {
 //	metrita3	Μετρητά παίκτη θέσης 3.
 
 Skiniko.prototype.processKinisiPD = function(data) {
-	var trapezi, dianomi;
+	var skiniko = this, trapezi, dianomi, kapikia, bidx;
 
-	trapezi = this.skinikoTrapeziGet(data.trapezi);
-	if (!trapezi) return this;
+	trapezi = skiniko.skinikoTrapeziGet(data.trapezi);
+
+	if (!trapezi)
+	return this;
 
 	dianomi = trapezi.trapeziDianomiGet(data.dianomi);
-	if (!dianomi) return this;
+
+	if (!dianomi)
+	return this;
+
+	kapikia = [
+		0,	// spare
+		0,	// παίκτης 1
+		0,	// παίκτης 2
+		0,	// παίκτης 3
+	];
 
 	Prefadoros.thesiWalk(function(thesi) {
-		dianomi.dianomiKasaSet(thesi, data['kasa' + thesi]);
-		dianomi.dianomiMetritaSet(thesi, data['metrita' + thesi]);
+		var kasa, metrita;
+
+		kasa = data['kasa' + thesi];
+		metrita = data['metrita' + thesi];
+
+		dianomi.dianomiKasaSet(thesi, kasa);
+		dianomi.dianomiMetritaSet(thesi, metrita);
+
+		// Θα μας χρειαστεί το ένα τρίτο του ποσού αυξομείωσης 
+		// της κάσας για τον κάθε παίκτη.
+
+		kapikia[0] = kasa / 3.0;
+
+		kapikia[thesi] += metrita;
+		kapikia[thesi] += kapikia[0] * 2.0;
+
+		switch (thesi) {
+		case 1:
+			kapikia[2] -= kapikia[0];
+			kapikia[3] -= kapikia[0];
+			break;
+		case 2:
+			kapikia[1] -= kapikia[0];
+			kapikia[3] -= kapikia[0];
+			break;
+		case 3:
+			kapikia[1] -= kapikia[0];
+			kapikia[2] -= kapikia[0];
+			break;
+		}
+	});
+
+	bidx = 'ΒΑΘΜΟΛΟΓΙΑ';
+
+	Prefadoros.thesiWalk(function(thesi) {
+		var pektis, bathmologia, apodosi, dianomes;
+
+		pektis = trapezi['pektis' + thesi];
+
+		if (!pektis)
+		return;
+
+		pektis = skiniko.pektis[pektis];
+
+		if (!pektis)
+		return;
+
+		if (!pektis.hasOwnProperty('peparam'))
+		pektis.peparam = {};
+
+		if (!pektis.peparam.hasOwnProperty(bidx))
+		pektis.peparam[bidx] = '0#0';
+
+		bathmologia = pektis.peparam[bidx].split('#');
+
+		if (bathmologia.length != 2)
+		bathmologia = [ 0.0, 0 ];
+
+		apodosi = parseFloat(bathmologia[0]);
+
+		if (isNaN(apodosi))
+		apodosi = 0.0;
+
+		dianomes = parseInt(bathmologia[1]);
+
+		if (isNaN(dianomes) || (dianomes < 0))
+		dianomes = 0;
+
+		apodosi = (apodosi * dianomes) + kapikia[thesi];
+		dianomes++;
+
+		pektis.peparam[bidx] = (apodosi / dianomes) + '#' + dianomes;
 	});
 
 	return this;

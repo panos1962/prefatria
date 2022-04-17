@@ -28,3 +28,4 @@ client/arxio/rcArxio.php
 client/lib/chartist.css
 client/lib/chartist.js
 database/ananeosi/*.data
+local/*
