@@ -140,6 +140,7 @@ Service.agora.solo3 = function(data) {
 	data.trapezi.trapeziXeklidoma();
 
 	Service.trapezi.dianomiSeLigo(data.trapezi, 3000);
+	Server.apodosiEnimerosi(data.trapezi);
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////@

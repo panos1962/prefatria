@@ -111,3 +111,69 @@ Server.off = {
 Server.noPoll = {
 	'/fereAlages': 0,
 };
+
+// Η function "apodosiEnimerosi" καλείται μετά την πληρωμή που ακολουθεί
+// οποιαδήποτε παιγμένη διανομή, και σκοπό έχει την ενημέρωση της απόδοσης
+// των παικτών στην database. Πρόκειται για function που καλείται εκτός
+// transaction καθώς δεν θεωρείται ότι το στοιχείο αυτό είναι σημαντικό.
+
+Server.apodosiEnimerosi = function(trapezi) {
+	var skiniko = Server.skiniko;
+
+	if (!skiniko.hasOwnProperty('pektis'))
+	return;
+
+	if (trapezi === undefined)
+	return;
+
+	if (typeof(trapezi) !== 'object')
+	return;
+
+	DB.connection().transaction(function(conn) {
+		const bidx = 'ΒΑΘΜΟΛΟΓΙΑ';
+		const comma = ', ';
+		var ante = 'REPLACE INTO `peparam` (`pektis`, `param`, `timi`) VALUES ';
+		var query = '';
+
+		Prefadoros.thesiWalk(function(thesi) {
+			var pektis;
+
+			pektis = 'pektis' + thesi;
+
+			if (!trapezi.hasOwnProperty(pektis))
+			return;
+
+			pektis = trapezi[pektis];
+
+			if (pektis === undefined)
+			return;
+
+			if (!skiniko.pektis.hasOwnProperty(pektis))
+			return;
+
+			pektis = Server.skiniko.pektis[pektis];
+
+			if (!pektis.hasOwnProperty('peparam'))
+			return;
+
+			if (!pektis.peparam.hasOwnProperty(bidx))
+			return;
+
+			query += ante + '(';
+			query += conn.escape(pektis.login) + ', ';
+			query += conn.escape(bidx) + ', ';
+			query += conn.escape(pektis.peparam[bidx]) + ')';
+
+			ante = comma;
+		});
+
+		if (ante !== comma) {
+			conn.rollback();
+			return;
+		}
+
+		conn.query(query, function(conn, res) {
+			conn.commit();
+		});
+	});
+}
