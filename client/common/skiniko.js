@@ -1680,7 +1680,7 @@ Apodosi.prototype.apodosi2string = function() {
 	kapikia = this.apodosiKapikiaGet();
 	dianomes = this.apodosiDianomesGet();
 
-	return kapikia + '#' + dianomes;
+	return kapikia.toFixed(6) + '#' + dianomes;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
