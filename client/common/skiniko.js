@@ -1588,7 +1588,7 @@ Apodosi.prototype.string2apodosi = function(s) {
 // υπολογίζεται η απόδοση του παίκτη. Όσο μεγαλύτερο είναι το πλήθος αυτό
 // τόσο πιο αργά αλλάζει η βαθμολογία.
 
-Apodosi.dianomesAnagogi = 1000;
+Apodosi.dianomesAnagogi = 10000;
 
 Apodosi.prototype.apodosiKapikiaSet = function(kapikia) {
 	this.kapikia = kapikia;
