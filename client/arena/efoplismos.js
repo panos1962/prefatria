@@ -12,14 +12,18 @@ Arena.partida.efoplismos = function() {
 
 	Arena.partida.afoplismos();
 
-	if (Arena.ego.oxiTrapezi()) return Arena.partida;
-	if (Arena.ego.oxiPektis()) return Arena.partida;
+	if (Arena.ego.oxiTrapezi())
+	return Arena.partida;
+
+	if (Arena.ego.oxiPektis())
+	return Arena.partida;
 
 	// Το «αρμάτωμα» της τσόχας με χειρισμούς και event listeners δεν
 	// το επιχειρούμε με το χέρι, αλλά με ιδιαίτερες functions που
 	// αφορούν στην τρέχουσα φάση του παιχνδιού.
 
 	efoplismos = 'efoplismos' + Arena.ego.trapezi.partidaFasiGet();
+
 	if (typeof Arena.ego.trapezi[efoplismos] !== 'function')
 	return Arena.partida;
 
@@ -75,13 +79,17 @@ Trapezi.prototype.efoplismosΔΗΛΩΣΗ = function() {
 	Arena.partida.dilosiPanelDOM.find('.tsoxaButton').addClass('tsoxaDilosiButton').
 	off('mouseenter').on('mouseenter', function(e) {
 		e.stopPropagation();
-		if (klikDilosi) return;
+
+		if (klikDilosi)
+		return;
 
 		$(this).addClass('tsoxaButtonOplismeno');
 	}).
 	off('mouseleave').on('mouseleave', function(e) {
 		e.stopPropagation();
-		if (klikDilosi) return;
+
+		if (klikDilosi)
+		return;
 
 		$(this).removeClass('tsoxaButtonOplismeno');
 	}).
@@ -423,22 +431,37 @@ Trapezi.efoplismosAlagiXartosia = function(trapezi) {
 	find('.tsoxaXartosiaFilo').css('cursor', 'pointer').
 	off('mouseenter').on('mouseenter', function(e) {
 		var filoDom = $(this);
+
 		e.stopPropagation();
-		if (panelDom.data('dialogos')) return;
+
+		if (panelDom.data('dialogos'))
+		return;
 
 		filoDom.addClass('tsoxaFiloEpilogi');
-		if (filoDom.data('skarto')) return;
-		filoDom.finish().animate({bottom: pano}, 'fast');
+
+		if (filoDom.data('skarto'))
+		return;
+
+		filoDom.stop().animate({bottom: pano}, 'fast');
 	}).
 	off('mouseleave').on('mouseleave', function(e) {
 		var filoDom = $(this);
+
 		e.stopPropagation();
-		if (panelDom.data('dialogos')) return;
+
+		if (panelDom.data('dialogos'))
+		return;
 
 		filoDom.removeClass('tsoxaFiloEpilogi');
-		if (filoDom.data('skarto')) return;
-		if (filoDom.data('kato')) filoDom.removeData('kato');
-		else filoDom.finish().animate({bottom: kato}, 'fast');
+
+		if (filoDom.data('skarto'))
+		return;
+
+		if (filoDom.data('kato'))
+		filoDom.removeData('kato');
+
+		else
+		filoDom.stop().animate({bottom: kato}, 'fast');
 	}).
 	off('mousedown').on('mousedown', function(e) {
 		Arena.inputRefocus(e);
@@ -521,13 +544,17 @@ Trapezi.prototype.efoplismosΣΥΜΜΕΤΟΧΗ = function() {
 	Arena.partida.dilosiPanelDOM.find('.tsoxaButton').addClass('tsoxaDilosiButton').
 	off('mouseenter').on('mouseenter', function(e) {
 		e.stopPropagation();
-		if (klikDilosi) return;
+
+		if (klikDilosi)
+		return;
 
 		$(this).addClass('tsoxaButtonOplismeno');
 	}).
 	off('mouseleave').on('mouseleave', function(e) {
 		e.stopPropagation();
-		if (klikDilosi) return;
+
+		if (klikDilosi)
+		return;
 
 		$(this).removeClass('tsoxaButtonOplismeno');
 	}).
@@ -613,7 +640,10 @@ Trapezi.prototype.efoplismosΠΑΙΧΝΙΔΙ = function() {
 			return;
 
 			filoDom.finish().css('cursor', 'pointer');
-			if (trapezi.partidaBazaCountGet() > 8) return;
+
+			if (trapezi.partidaBazaCountGet() > 8)
+			return;
+
 			filoDom.finish().animate({bottom: pano}, delay);
 		}).
 		on('mouseleave', function(e) {
@@ -624,7 +654,10 @@ Trapezi.prototype.efoplismosΠΑΙΧΝΙΔΙ = function() {
 			return;
 
 			filoDom.finish().css('cursor', 'auto');
-			if (trapezi.partidaBazaCountGet() > 8) return;
+
+			if (trapezi.partidaBazaCountGet() > 8)
+			return;
+
 			filoDom.finish().animate({bottom: filoDom.data('bottom')}, delay);
 		}).
 		on('click', function(e) {
