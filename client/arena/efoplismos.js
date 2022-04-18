@@ -644,7 +644,7 @@ Trapezi.prototype.efoplismosΠΑΙΧΝΙΔΙ = function() {
 			if (trapezi.partidaBazaCountGet() > 8)
 			return;
 
-			filoDom.finish().animate({bottom: pano}, delay);
+			filoDom.stop().animate({bottom: pano}, delay);
 		}).
 		on('mouseleave', function(e) {
 			e.stopPropagation();
@@ -658,7 +658,7 @@ Trapezi.prototype.efoplismosΠΑΙΧΝΙΔΙ = function() {
 			if (trapezi.partidaBazaCountGet() > 8)
 			return;
 
-			filoDom.finish().animate({bottom: filoDom.data('bottom')}, delay);
+			filoDom.stop().animate({bottom: filoDom.data('bottom')}, delay);
 		}).
 		on('click', function(e) {
 			Arena.inputRefocus(e);
