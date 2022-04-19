@@ -113,11 +113,14 @@ Pektis.prototype.pektisPeparamGet = function(param) {
 };
 
 Pektis.prototype.pektisApodosiSet = function(apodosi) {
-	if (typeof(apodosi) === 'object') && (apodosi instanceof(Apodosi))
+	if (apodosi === undefined)
+	return this;
+
+	if ((typeof(apodosi) === 'object') && (apodosi instanceof(Apodosi)))
 	apodosi = apodosi.apodosi2string();
 
-	else if (typeof(apodosi) !== 'string'))
-	return;
+	else if (typeof(apodosi) !== 'string')
+	return this;
 
 	this.peparam[Apodosi.peparamIdx] = apodosi;
 	return this;
