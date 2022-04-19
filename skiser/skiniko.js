@@ -1166,10 +1166,15 @@ Apodosi.databaseUpdate = function(trapezi) {
 			ante = comma;
 		});
 
+		// Αν δεν έχει εντοπιστεί ούτε ένας παίκτης του τραπεζιού,
+		// τότε επιστρέφουμε ακυρώνοντας τη σύνδεση με την database.
+
 		if (ante !== comma) {
 			conn.rollback();
 			return;
 		}
+
+		// Ενημερώνουμε την database χωρίς ελέγχους.
 
 		conn.query(query, function(conn, res) {
 			conn.commit();

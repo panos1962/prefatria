@@ -112,15 +112,24 @@ Pektis.prototype.pektisPeparamGet = function(param) {
 	return this.peparam[param];
 };
 
+// Η μέθοδος "pektisApodosiSet" δέχεται την απόδοση ενός παίκτη και την
+// καταχωρεί στην αντίστοιχη παράμετρο (ΒΑΘΜΟΛΟΓΙΑ) ως string. Η απόδοση
+// μπορεί να περαστεί ως string της μορφής "Κ#Δ" ή ως αντικείμενο απόδοσης.
+// Στην περίπτωση που η απόδοση που περάσουμε δεν είναι ορθή ως απόδοση,
+// τίθεται μηδενική τιμή απόδοσης ("0#0").
+
 Pektis.prototype.pektisApodosiSet = function(apodosi) {
 	if (apodosi === undefined)
-	return this;
+	apodosi = (new Apodosi()).apodosi2string();
 
-	if ((typeof(apodosi) === 'object') && (apodosi instanceof(Apodosi)))
+	else if ((typeof(apodosi) === 'object') && (apodosi instanceof(Apodosi)))
 	apodosi = apodosi.apodosi2string();
 
-	else if (typeof(apodosi) !== 'string')
-	return this;
+	else if (typeof(apodosi) === 'string')
+	apodosi = (new Apodosi(apodosi)).apodosi2string();
+
+	else
+	apodosi = (new Apodosi()).apodosi2string();
 
 	this.peparam[Apodosi.peparamIdx] = apodosi;
 	return this;
@@ -1593,6 +1602,13 @@ Apodosi.peparamIdx = 'ΒΑΘΜΟΛΟΓΙΑ';
 // τόσο πιο αργά αλλάζει η βαθμολογία.
 
 Apodosi.dianomesAnagogi = 10000;
+
+// Η μέθοδος "string2apodosi" δέχεται την απόδοση του παίκτη ως string της
+// μορφής "Κ#Δ", όπου "Κ" είναι τα εκτιμώμενα καπίκια ανά παιγμένη διανομή
+// του παίκτη, και "Δ" είναι το συνολικό πλήθος παιγμένων διανομών που έχουν
+// ληφθεί υπόψιν για τη διαμόρφωση της βαθμολογίας του παίκτη. Σε περίπτωση
+// που το string είναι ακαθόριστο ή εσφαλμένο, η βαθμολογία του παίκτη
+// μηδενίζεται.
 
 Apodosi.prototype.string2apodosi = function(s) {
 	if (s === undefined)
