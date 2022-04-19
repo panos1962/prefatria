@@ -127,7 +127,7 @@ Pektis.prototype.pektisApodosiSet = function(apodosi) {
 };
 
 Pektis.prototype.pektisApodosiGet = function() {
-	return this.peparam[Apodosi.peparamIdx];
+	return (new Apodosi(this.peparam[Apodosi.peparamIdx]));
 };
 
 Pektis.prototype.pektisPeparamWalk = function(callback) {

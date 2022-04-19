@@ -651,7 +651,7 @@ Skiniko.prototype.processKinisiPD = function(data) {
 		if (!pektis.peparam.hasOwnProperty(Apodosi.peparamIdx))
 		pektis.pektisApodosiSet('0#0');
 
-		apodosi = (new Apodosi(pektis.pektisApodosiGet())).
+		apodosi = pektis.pektisApodosiGet().
 		apodosiAdd(kapikia[thesi]);
 
 		pektis.pektisApodosiSet(apodosi);

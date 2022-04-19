@@ -735,8 +735,7 @@ Pektis.prototype.pektisFyiInfoRank = function() {
 	var msg, apodosi, kapikia, dianomes;
 
 	msg = '';
-	apodosi = new Apodosi(this.pektisApodosiGet());
-
+	apodosi = this.pektisApodosiGet();
 	kapikia = apodosi.apodosiKapikiaGet();
 	dianomes = apodosi.apodosiDianomesGet();
 
