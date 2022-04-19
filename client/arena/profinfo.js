@@ -703,7 +703,7 @@ Arena.pektisPanelRefreshDOM = function() {
 Arena.pektisPanelRankRefreshDOM = function(pektis) {
 	var apodosi, kapikia, dianomes, tit, dom, opa;
 
-	apodosi = new Apodosi(pektis.pektisPeparamGet('ΒΑΘΜΟΛΟΓΙΑ'));
+	apodosi = new Apodosi(pektis.pektisApodosiGet());
 	kapikia = apodosi.apodosiKapikiaGet();
 	dianomes = apodosi.apodosiDianomesGet();
 

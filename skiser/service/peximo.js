@@ -137,7 +137,7 @@ Service.peximo.pliromi2 = function(data) {
 	data.nodereq.end();
 
 	Service.trapezi.dianomiSeLigo(data.trapezi);
-	Server.apodosiEnimerosi(data.trapezi);
+	Apodosi.databaseUpdate(data.trapezi);
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////@

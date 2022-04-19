@@ -112,6 +112,21 @@ Pektis.prototype.pektisPeparamGet = function(param) {
 	return this.peparam[param];
 };
 
+Pektis.prototype.pektisApodosiSet = function(apodosi) {
+	if (typeof(apodosi) === 'object') && (apodosi instanceof(Apodosi))
+	apodosi = apodosi.apodosi2string();
+
+	else if (typeof(apodosi) !== 'string'))
+	return;
+
+	this.peparam[Apodosi.peparamIdx] = apodosi;
+	return this;
+};
+
+Pektis.prototype.pektisApodosiGet = function() {
+	return this.peparam[Apodosi.peparamIdx];
+};
+
 Pektis.prototype.pektisPeparamWalk = function(callback) {
 	Globals.walk(this.peparam, function(param, timi) {
 		callback(param, timi);
@@ -1566,6 +1581,16 @@ Apodosi = function(s) {
 	this.string2apodosi(s);
 };
 
+// Η σταθερά "peparamIdx" είναι ο κωδικός παραμέτρου βαθμολογίας.
+
+Apodosi.peparamIdx = 'ΒΑΘΜΟΛΟΓΙΑ';
+
+// Η σταθερά "dianomesAnagogi" είναι ένα πλήθος διανομών με βάση το οποίο
+// υπολογίζεται η απόδοση του παίκτη. Όσο μεγαλύτερο είναι το πλήθος αυτό
+// τόσο πιο αργά αλλάζει η βαθμολογία.
+
+Apodosi.dianomesAnagogi = 10000;
+
 Apodosi.prototype.string2apodosi = function(s) {
 	if (s === undefined)
 	return this.apodosiMidenismos();
@@ -1583,12 +1608,6 @@ Apodosi.prototype.string2apodosi = function(s) {
 	apodosiDianomesSet(s[1]).
 	apodosiCheck();
 };
-
-// Η σταθερά "dianomesAnagogi" είναι ένα πλήθος διανομών με βάση το οποίο
-// υπολογίζεται η απόδοση του παίκτη. Όσο μεγαλύτερο είναι το πλήθος αυτό
-// τόσο πιο αργά αλλάζει η βαθμολογία.
-
-Apodosi.dianomesAnagogi = 10000;
 
 Apodosi.prototype.apodosiKapikiaSet = function(kapikia) {
 	this.kapikia = kapikia;

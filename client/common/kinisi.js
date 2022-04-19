@@ -580,7 +580,7 @@ Skiniko.prototype.processKinisiEG = function(data) {
 //	metrita3	Μετρητά παίκτη θέσης 3.
 
 Skiniko.prototype.processKinisiPD = function(data) {
-	var skiniko = this, trapezi, dianomi, kapikia, bidx;
+	var skiniko = this, trapezi, dianomi, kapikia;
 
 	trapezi = skiniko.skinikoTrapeziGet(data.trapezi);
 
@@ -632,8 +632,6 @@ Skiniko.prototype.processKinisiPD = function(data) {
 		}
 	});
 
-	bidx = 'ΒΑΘΜΟΛΟΓΙΑ';
-
 	Prefadoros.thesiWalk(function(thesi) {
 		var pektis, apodosi;
 
@@ -650,13 +648,13 @@ Skiniko.prototype.processKinisiPD = function(data) {
 		if (!pektis.hasOwnProperty('peparam'))
 		pektis.peparam = {};
 
-		if (!pektis.peparam.hasOwnProperty(bidx))
-		pektis.peparam[bidx] = '0#0';
+		if (!pektis.peparam.hasOwnProperty(Apodosi.peparamIdx))
+		pektis.pektisApodosiSet('0#0');
 
-		apodosi = (new Apodosi(pektis.peparam[bidx])).
+		apodosi = (new Apodosi(pektis.pektisApodosiGet())).
 		apodosiAdd(kapikia[thesi]);
 
-		pektis.peparam[bidx] = apodosi.apodosi2string();
+		pektis.pektisApodosiSet(apodosi);
 	});
 
 	return this;
