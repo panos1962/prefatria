@@ -1604,32 +1604,6 @@ Apodosi.peparamIdx = 'ΒΑΘΜΟΛΟΓΙΑ';
 
 Apodosi.dianomesAnagogi = 10000;
 
-// Η μέθοδος "string2apodosi" δέχεται την απόδοση του παίκτη ως string της
-// μορφής "Κ#Δ", όπου "Κ" είναι ένας δεκαδικός αριθμός που δηλώνει τα καπίκια
-// που αναμένεται να κερδίσει (θετικός αριθμός) ή να χάσει (αρνητικός αριθμός)
-// ο παίκτης ανά παιγμένη διανομή, και "Δ" είναι είναι ένας θετικός ακέραιος
-// αριθμός που δηλώνει το συνολικό πλήθος παιγμένων διανομών που έχουν ληφθεί
-// υπόψιν για τη διαμόρφωση της βαθμολογίας του παίκτη. Σε περίπτωση που το
-// string είναι ακαθόριστο ή εσφαλμένο, η βαθμολογία του παίκτη μηδενίζεται.
-
-Apodosi.prototype.string2apodosi = function(s) {
-	if (s === undefined)
-	return this.apodosiMidenismos();
-
-	if (typeof(s) !== 'string')
-	return this.apodosiMidenismos();
-
-	s = s.split('#');
-
-	if (s.length !== 2)
-	return this.apodosiMidenismos();
-
-	return this.
-	apodosiKapikiaSet(s[0]).
-	apodosiDianomesSet(s[1]).
-	apodosiCheck();
-};
-
 Apodosi.prototype.apodosiKapikiaSet = function(kapikia) {
 	this.kapikia = kapikia;
 	return this;
@@ -1711,6 +1685,37 @@ Apodosi.prototype.apodosiAdd = function(x) {
 	apodosiKapikiaSet(x).
 	apodosiDianomesSet(dianomes + 1);
 };
+
+// Η μέθοδος "string2apodosi" δέχεται την απόδοση του παίκτη ως string της
+// μορφής "Κ#Δ", όπου "Κ" είναι ένας δεκαδικός αριθμός που δηλώνει τα καπίκια
+// που αναμένεται να κερδίσει (θετικός αριθμός) ή να χάσει (αρνητικός αριθμός)
+// ο παίκτης ανά παιγμένη διανομή, και "Δ" είναι είναι ένας θετικός ακέραιος
+// αριθμός που δηλώνει το συνολικό πλήθος παιγμένων διανομών που έχουν ληφθεί
+// υπόψιν για τη διαμόρφωση της βαθμολογίας του παίκτη. Σε περίπτωση που το
+// string είναι ακαθόριστο ή εσφαλμένο, η βαθμολογία του παίκτη μηδενίζεται.
+
+Apodosi.prototype.string2apodosi = function(s) {
+	if (s === undefined)
+	return this.apodosiMidenismos();
+
+	if (typeof(s) !== 'string')
+	return this.apodosiMidenismos();
+
+	s = s.split('#');
+
+	if (s.length !== 2)
+	return this.apodosiMidenismos();
+
+	return this.
+	apodosiKapikiaSet(s[0]).
+	apodosiDianomesSet(s[1]).
+	apodosiCheck();
+};
+
+// Η μέθοδος "apodosi2string" είναι η αντίθετη της "string2apodosi" καθώς
+// επιστρέφει την απόδοση του παίκτη ως string. Αν η απόδοση είναι εσφαλμένη,
+// τότε μηδενίζεται πρίν επιστραφεί το αντίστοιχο string, ενώ τα καπίκια
+// στρογγυλεύονται στα έξι (6) δεκαδικά ψηφία.
 
 Apodosi.prototype.apodosi2string = function() {
 	var kapikia, dianomes;
