@@ -739,7 +739,7 @@ Pektis.prototype.pektisFyiInfoRank = function() {
 	kapikia = apodosi.apodosiKapikiaGet();
 	dianomes = apodosi.apodosiDianomesGet();
 
-	if (dianomes <= 0)
+	if (dianomes < 1)
 	return msg;
 
 	msg = ', απόδοση: <span class="entona ';
