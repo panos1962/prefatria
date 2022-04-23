@@ -145,6 +145,8 @@ class Globals {
 			break;
 		case "www.opasopa.net":
 		case "opasopa.net":
+		case "www.prefadoros.win":
+		case "prefadoros.win":
 			self::$server = "http://" . $server_name . "/prefa/";
 			break;
 		case "5.9.24.181":
