@@ -205,6 +205,8 @@ class Globals {
 		case "http://www.prefadoros.gr/":
 		case "http://opasopa.net/prefa/";
 		case "http://www.opasopa.net/prefa/":
+		case "http://prefadoros.win/prefa/";
+		case "http://www.prefadoros.win/prefa/":
 			break;
 		default:
 			if (self::$server) self::errmsg(self::$server . ": ");
