@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+progname="$(basename $0)"
+
+usage() {
+	echo "usage: ${progname}" >&2
+	exit 1
+}
+
+[ -z "${PREFADOROS_BASEDIR}" ] &&
+export PREFADOROS_BASEDIR="/var/opt/prefadoros"
+
+[ -d "${PREFADOROS_BASEDIR}" ] || {
+	echo "${PREFADOROS_BASEDIR}: directory not found" >&2
+	exit 2
+}
+
+[ -r "${PREFADOROS_BASEDIR}" ] || {
+	echo "${PREFADOROS_BASEDIR}: cannot read directory" >&2
+	exit 2
+}
+
+errs=
+
+apo=0
+eos=0
+tlist=
+
+while getopts ":a:e:t:" opt
+do
+	case "${opt}" in
+	a)
+		apo="${OPTARG}"
+		;;
+	e)
+		eos="${OPTARG}"
+		;;
+	t)
+		tlist="${tlist},${OPTARG}"
+		;;
+	\?)
+		echo "${progname}: -${OPTARG}: invalid option" >&2
+		errs=1
+		;;
+	\:)
+		echo "${progname}: -${OPTARG}: option requires an argument" >&2
+		errs=1
+		;;
+	esac
+done
+unset opt
+
+[ -n "${errs}" ] && usage
+shift $(expr ${OPTIND} - 1)
+
+awk \
+-v progname="${progname}" \
+-i "${PREFADOROS_BASEDIR}/lib/prefadoros.awk" \
+-f "${PREFADOROS_BASEDIR}/lib/trdump.awk" \
+-v tlist="${tlist}" \
+-v apo=0 \
+-v eos=0 \
+"$@"
