@@ -58,6 +58,6 @@ awk \
 -i "${PREFADOROS_BASEDIR}/lib/prefadoros.awk" \
 -f "${PREFADOROS_BASEDIR}/lib/trdump.awk" \
 -v tlist="${tlist}" \
--v apo=0 \
--v eos=0 \
+-v apo="${apo}" \
+-v eos="${eos}" \
 "$@"

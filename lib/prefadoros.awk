@@ -8,6 +8,9 @@
 #
 
 BEGIN {
+	if (progname == "")
+	progname = "unknown"
+
 	if (("PREFADOROS_BASEDIR" in ENVIRON))
 	prefadoros_basedir = ENVIRON["PREFADOROS_BASEDIR"]
 
@@ -361,8 +364,12 @@ function set_password(			passfile, pass) {
 	spawk_sesami["dbpassword"] = spawk_getpass()
 }
 
+function errmsg(msg) {
+	print progname ": " msg >"/dev/stderr"
+}
+
 function fatal(msg, err) {
-	print msg >"/dev/stderr"
+	errmg(msg)
 	exit(err ? err : 2)
 }
 
