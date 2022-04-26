@@ -8,6 +8,12 @@
 #
 
 BEGIN {
+	if (("PREFADOROS_BASEDIR" in ENVIRON))
+	prefadoros_basedir = ENVIRON["PREFADOROS_BASEDIR"]
+
+	else
+	prefadoros_basedir = "/var/opt/prefadoros"
+
 	spawk_verbose = 1
 
 	spawk_sesami["dbuser"] = "prefadoros"
@@ -340,12 +346,17 @@ function kapikia_get(trapezi, thesi) {
 
 ##############################################################################@
 
-function set_password() {
+function set_password(			passfile, pass) {
 	if ("dbpassword" in spawk_sesami)
 	return
 
 	if ("PREFADOROS_PASSWORD" in ENVIRON)
 	return spawk_sesami["dbpassword"] = ENVIRON["PREFADOROS_PASSWORD"]
+
+	passfile = prefadoros_basedir "/misc/.mistiko/bekadb"
+
+	if (getline spawk_sesami["dbpassword"] <passfile)
+	return close(passfile)
 
 	spawk_sesami["dbpassword"] = spawk_getpass()
 }
