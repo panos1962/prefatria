@@ -84,7 +84,7 @@ function dump_apo_eos(					query, data) {
 	exit(2)
 
 	while (spawk_fetchrow(data))
-	print data[1]
+	dump_trapezi(data[1])
 
 	return 1
 }
