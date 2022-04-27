@@ -1,5 +1,3 @@
-@load "spawk"
-
 BEGIN {
 	OFS = "\t"
 
@@ -68,24 +66,25 @@ function dump_tlist(			n, a, i) {
 	return 1
 }
 
-function dump_apo_eos(					) {
+function dump_apo_eos(					query, data) {
 	if ((apo == "") && (eos == ""))
 	return 0
 
-	if (apo)
-	apo += 0;
+	query = "SELECT `kodikos` FROM `trapezi` WHERE 1 "
 
-	else
-	apo = trapezi_min()
+	if (apo)
+	query = query "AND (`kodikos` >= " apo ") "
 
 	if (eos)
-	eos += 0
+	query = query "AND (`kodikos` <= " eos ") "
 
-	else
-	eos = trapezi_max()
+	query = query "ORDER BY `kodikos`"
 
-	for (;apo <= eos; apo++)
-	dump_trapezi(apo)
+	if (spawk_submit(query) != 3)
+	exit(2)
+
+	while (spawk_fetchrow(data))
+	print data[1]
 
 	return 1
 }
@@ -105,7 +104,7 @@ function dump_trapezi(x, check,			kodikos, query, trapezi) {
 	for (i = 1; i <= 3; i++)
 	query = query " `pektis" i "`, `apodoxi" i "`,"
 
-	query = query " `poll`, `arxio` " \
+	query = query " `arxio` " \
 		"FROM `trapezi` " \
 		"WHERE `kodikos` = " kodikos
 
@@ -174,26 +173,6 @@ function energia_dump(dianomi,			query, energia) {
 
 	while (spawk_fetchrow(energia, 0))
 	print energia[0]
-}
-
-function trapezi_min() {
-	return trapezi_mm("MIN")
-}
-
-function trapezi_max() {
-	return trapezi_mm("MAX")
-}
-
-function trapezi_mm(mm,			query, data) {
-	query = "SELECT " mm "(`kodikos`) FROM trapezi"
-
-	if (spawk_submit(query) != 3)
-	exit(2)
-
-	if (spawk_fetchone(data))
-	return (data[1] + 0)
-
-	fatal("δεν υπάρχουν τραπεζια")
 }
 
 function oxi_kodikos(x) {

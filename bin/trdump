@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Το πρόγραμμα "trdump" παράγει δεδομένα τραπεζιών με ιδιαίτερο format.
+
 progname="$(basename $0)"
 
 usage() {
@@ -22,8 +24,8 @@ export PREFADOROS_BASEDIR="/var/opt/prefadoros"
 
 errs=
 
-apo=0
-eos=0
+apo=
+eos=
 tlist=
 
 while getopts ":a:e:t:" opt
@@ -55,6 +57,7 @@ shift $(expr ${OPTIND} - 1)
 
 awk \
 -v progname="${progname}" \
+-l spawk \
 -i "${PREFADOROS_BASEDIR}/lib/prefadoros.awk" \
 -f "${PREFADOROS_BASEDIR}/lib/trdump.awk" \
 -v tlist="${tlist}" \
