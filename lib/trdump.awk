@@ -154,6 +154,7 @@ function dianomi_dump(trapezi,			query, dianomi) {
 		print "@dianomi", dianomi[1]
 		print dianomi[0]
 		energia_dump(dianomi[1])
+		akirosi_dump(dianomi[1])
 	}
 }
 
@@ -173,6 +174,25 @@ function energia_dump(dianomi,			query, energia) {
 
 	while (spawk_fetchrow(energia, 0))
 	print energia[0]
+}
+
+function akirosi_dump(dianomi,			query, akirosi) {
+	query = "SELECT `kodikos`, `pektis`, `akirotis`, " \
+		"`idos`, `data`, `pote` " \
+		"FROM `akirosi` WHERE `dianomi` = " dianomi " " \
+		"ORDER BY `kodikos`"
+
+	if (spawk_submit(query) != 3)
+	exit(2)
+
+	if (!spawk_fetchrow(akirosi, 0))
+	return
+
+	print "@akirosi", dianomi
+	print akirosi[0]
+
+	while (spawk_fetchrow(akirosi, 0))
+	print akirosi[0]
 }
 
 function oxi_kodikos(x) {

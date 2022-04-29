@@ -1,27 +1,48 @@
+# Το παρόν χρησιμοποιείται από το πρόγραμμα "trload" για την [επαν]εισαγωγή
+# τραπεζιών από αρχεία δεδομένων που έχουν προκύψει από το πρόγραμμα "trdump".
+
 BEGIN {
 	FS = "\t"
 
-	load_func["trapezi"] = "trapezi_load"
-	load_func["trparam"] = "trparam_load"
-	load_func["dianomi"] = "dianomi_load"
-	load_func["energia"] = "energia_load"
+	load_func["@trapezi"] = "trapezi_load"
+	load_func["@trparam"] = "trparam_load"
+	load_func["@dianomi"] = "dianomi_load"
+	load_func["@energia"] = "energia_load"
+	load_func["@akirosi"] = "akirosi_load"
+
+	# Η global μεταβλητή "trapezi" περιέχει τον κωδικό του προς εισαγωγή
+	# τραπεζιού και τίθεται από τα data που αφορούν στον πίνακα "trapezi".
+	# Αν η τιμή τής μεταβλητής είναι μηδενική, τότε σημαίνει ότι δεν έχει
+	# καθοριστεί κωδικός τραπεζιού και σ' αυτήν την περίπτωση το input
+	# απλώς απορρίπτεται.
 
 	trapezi = 0
+	dianomi = 0
 }
 
-$1 ~ /^@/ {
-	sub(/^@/, "", $1)
-
-	if ($1 in load_func) {
-		load_data = load_func[$1]
-		next
-	}
-
-	if (trapezi)
-	load_abort()
-
-	errmsg($1 ": invalid section header")
+$0 ~ /^@/ {
+	process_header()
 	next
+}
+
+function process_header(			tag, n, a) {
+	if (NF > 1)
+	return new_header($1, $2)
+
+	split($0, a, " ")
+	new_header(a[1])
+}
+
+# Το input αποτελείται από δεδομένα τραπεζιών, όπου κάθε τραπέζι αποτελείται
+# από τα κεφάλαια που καθορίζονται από επικεφαλίδες της μορφής "@TAG", όπου
+# "TAG" είναι "trapezi", "trparam", "dianomi" και "energia".
+
+function new_header(tag) {
+	if (tag in load_func)
+	return (load_data = load_func[tag])
+
+	load_abort()
+	errmsg($1 ": invalid section header")
 }
 
 {
@@ -29,17 +50,17 @@ $1 ~ /^@/ {
 }
 
 function trapezi_load(				query, i) {
-	load_close()
+	load_commit()
 
 	trapezi = $1
+	dianomi = 0
+
 	begin_work()
 
-	query = "DELETE FROM `trapezi` WHERE `kodikos` = " $1
+	query = "DELETE FROM `trapezi` WHERE `kodikos` = " trapezi
 
-	if (spawk_submit(query) != 2) {
-		rollback_work()
-		return 1
-	}
+	if (spawk_submit(query) != 2)
+	return load_abort()
 
 	query = "INSERT INTO `trapezi` (`kodikos`, `stisimo`," \
 
@@ -47,7 +68,7 @@ function trapezi_load(				query, i) {
 	query = query " `pektis" i "`, `apodoxi" i "`,"
 
 	query = query " `arxio`) VALUES (" \
-		$1 ", " \
+		trapezi ", " \
 		spawk_escape($2) ", " \
 		pektis($3) ", " \
 		spawk_escape($4) ", " \
@@ -57,16 +78,11 @@ function trapezi_load(				query, i) {
 		spawk_escape($8) ", " \
 		spawk_escape($9) ")"
 
-	if (spawk_submit(query) != 2) {
-		rollback_work()
-		return 1
-	}
+	if (spawk_submit(query) != 2)
+	return load_abort()
 
-	if (spawk_affected != 1) {
-		errmsg($0 ": insert failed")
-		rollback_work()
-		return 1
-	}
+	if (spawk_affected != 1)
+	return load_abort()
 }
 
 function trparam_load(				query) {
@@ -79,82 +95,93 @@ function trparam_load(				query) {
 		spawk_escape($1) ", " \
 		spawk_escape($2) ")"
 
-	if (spawk_submit(query) != 2) {
-		load_abort()
-		return
-	}
+	if (spawk_submit(query) != 2)
+	return load_abort()
 
-	if (spawk_affected != 1) {
-		load_abort()
-		return
-	}
+	if (spawk_affected != 1)
+	return load_abort()
 }
 
-function dianomi_load(				query) {
-}
-
-function energia_load(				query) {
-}
-
-function trparam_dump(trapezi,			query, trparam) {
-	query = "SELECT `param`, `timi` FROM `trparam` " \
-		"WHERE `trapezi` = " trapezi " ORDER BY `param`"
-
-	if (spawk_submit(query) != 3)
-	exit(2)
-
-	if (!spawk_fetchrow(trparam, 0))
+function dianomi_load(				query, i, telos) {
+	if (!trapezi)
 	return
 
-	print "@trparam"
-	print trparam[0]
+	dianomi = $1
 
-	while (spawk_fetchrow(trparam, 0))
-	print trparam[0]
-}
+	if ($10 != spawk_null)
+	telos = spawk_escape($10)
 
-function dianomi_dump(trapezi,			query, dianomi) {
-	query = "SELECT `kodikos`, `enarxi`, `dealer`, "
+	else
+	telos = "NULL"
+
+	query = "INSERT INTO `dianomi` (`kodikos`, `trapezi`, " \
+		"`enarxi`, `dealer`, "
 
 	for (i = 1; i <= 3; i++)
 	query = query "`kasa" i "`, `metrita" i "`, "
 
-	query = query "`telos` FROM `dianomi` " \
-		"WHERE `trapezi` = " trapezi " ORDER BY `kodikos`"
+	query = query "`telos`) VALUES (" \
 
-	if (spawk_submit(query) != 3)
-	exit(2)
+	query = query dianomi ", " \
+		trapezi ", " \
+		spawk_escape($2) ", " \
+		$3 ", " \
+		$4 ", " $5 ", " \
+		$6 ", " $7 ", " \
+		$8 ", " $9 ", " \
+		telos ")"
 
-	while (spawk_fetchrow(dianomi, 0)) {
-		print "@dianomi", dianomi[1]
-		print dianomi[0]
-		energia_dump(dianomi[1])
-	}
+	if (spawk_submit(query) != 2)
+	return load_abort()
+
+	if (spawk_affected != 1)
+	return load_abort()
 }
 
-function energia_dump(dianomi,			query, energia) {
-	query = "SELECT `kodikos`, `pektis`, `idos`, `data`, `pote` " \
-		"FROM `energia` WHERE `dianomi` = " dianomi " " \
-		"ORDER BY `kodikos`"
+function energia_load(				query) {
+	if (!dianomi)
+	return load_abort()
 
-	if (spawk_submit(query) != 3)
-	exit(2)
+	query = "INSERT INTO `energia` (`kodikos`, `dianomi`, " \
+		"`pektis`, `idos`, `data`, `pote`) VALUES ("
 
-	if (!spawk_fetchrow(energia, 0))
-	return
+	query = query $1 ", " \
+		dianomi ", " \
+		$2 ", " \
+		spawk_escape($3) ", " \
+		spawk_escape($4) ", " \
+		spawk_escape($5) ")"
 
-	print "@energia", dianomi
-	print energia[0]
+	if (spawk_submit(query) != 2)
+	return load_abort()
 
-	while (spawk_fetchrow(energia, 0))
-	print energia[0]
+	if (spawk_affected != 1)
+	return load_abort()
+}
+
+function akirosi_load(				query) {
+	if (!dianomi)
+	return load_abort()
+
+	query = "INSERT INTO `akirosi` (`kodikos`, `dianomi`, " \
+		"`pektis`, `akirotis`, `idos`, `data`, `pote`) VALUES ("
+
+	query = query $1 ", " \
+		dianomi ", " \
+		$2 ", " \
+		$3 ", " \
+		spawk_escape($4) ", " \
+		spawk_escape($5) ", " \
+		spawk_escape($6) ")"
+
+	if (spawk_submit(query) != 2)
+	return load_abort()
+
+	if (spawk_affected != 1)
+	return load_abort()
 }
 
 function pektis(s) {
-if (s == "") {
-	print ">>>>"
-	exit(0)
-}
 	if (s == spawk_null)
 	return "NULL"
 
@@ -185,12 +212,17 @@ function oxi_kodikos(x) {
 	return 1
 }
 
-function load_close() {
+function load_commit() {
 	if (!trapezi)
 	return
 
 	commit_work()
+
+	if (verbal)
+	print trapezi
+
 	trapezi = 0
+	dianomi = 0
 }
 
 function load_abort() {
@@ -198,5 +230,6 @@ function load_abort() {
 	return
 
 	rollback_work()
+	errmsg(trapezi ": ακυρώθηκε η διαδικασία ενημέρωσης τραπεζιού")
 	trapezi = 0
 }
