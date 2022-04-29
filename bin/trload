@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+# Το πρόγραμμα "trload" εισάγει στην database τραπέζια από δεδομένα
+# που έχουν προκύψει από το πρόγραμμα "trdump".
+
+progname="$(basename $0)"
+
+usage() {
+	echo "usage: ${progname} [-v]" >&2
+	exit 1
+}
+
+[ -z "${PREFADOROS_BASEDIR}" ] &&
+export PREFADOROS_BASEDIR="/var/opt/prefadoros"
+
+[ -d "${PREFADOROS_BASEDIR}" ] || {
+	echo "${PREFADOROS_BASEDIR}: directory not found" >&2
+	exit 2
+}
+
+[ -r "${PREFADOROS_BASEDIR}" ] || {
+	echo "${PREFADOROS_BASEDIR}: cannot read directory" >&2
+	exit 2
+}
+
+errs=
+verbal=
+
+while getopts ":v" opt
+do
+	case "${opt}" in
+	v)
+		verbal=1
+		;;
+	\?)
+		echo "${progname}: -${OPTARG}: invalid option" >&2
+		errs=1
+		;;
+	\:)
+		echo "${progname}: -${OPTARG}: option requires an argument" >&2
+		errs=1
+		;;
+	esac
+done
+unset opt
+
+[ -n "${errs}" ] && usage
+shift $(expr ${OPTIND} - 1)
+
+awk \
+-v progname="${progname}" \
+-l spawk \
+-i "${PREFADOROS_BASEDIR}/lib/prefadoros.awk" \
+-f "${PREFADOROS_BASEDIR}/lib/trload.awk" \
+-v verbal="${verbal}" \
+"$@"
