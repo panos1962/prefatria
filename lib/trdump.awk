@@ -104,7 +104,7 @@ function dump_trapezi(x, check,			kodikos, query, trapezi) {
 	for (i = 1; i <= 3; i++)
 	query = query " `pektis" i "`, `apodoxi" i "`,"
 
-	query = query " `arxio` " \
+	query = query " `poll`, `arxio` " \
 		"FROM `trapezi` " \
 		"WHERE `kodikos` = " kodikos
 
@@ -114,7 +114,7 @@ function dump_trapezi(x, check,			kodikos, query, trapezi) {
 	if (!spawk_fetchone(trapezi, 0))
 	return errmsg(kodikos ": δεν βρέθηκε το τραπέζι")
 
-	print "@trapezi", kodikos
+	print "@trapezi"
 	print trapezi[0]
 
 	trparam_dump(kodikos)
@@ -151,7 +151,7 @@ function dianomi_dump(trapezi,			query, dianomi) {
 	exit(2)
 
 	while (spawk_fetchrow(dianomi, 0)) {
-		print "@dianomi", dianomi[1]
+		print "@dianomi"
 		print dianomi[0]
 		energia_dump(dianomi[1])
 		akirosi_dump(dianomi[1])
@@ -169,7 +169,7 @@ function energia_dump(dianomi,			query, energia) {
 	if (!spawk_fetchrow(energia, 0))
 	return
 
-	print "@energia", dianomi
+	print "@energia"
 	print energia[0]
 
 	while (spawk_fetchrow(energia, 0))
@@ -188,7 +188,7 @@ function akirosi_dump(dianomi,			query, akirosi) {
 	if (!spawk_fetchrow(akirosi, 0))
 	return
 
-	print "@akirosi", dianomi
+	print "@akirosi"
 	print akirosi[0]
 
 	while (spawk_fetchrow(akirosi, 0))

@@ -25,9 +25,13 @@ $0 ~ /^@/ {
 	next
 }
 
+END {
+	load_commit()
+}
+
 function process_header(			tag, n, a) {
 	if (NF > 1)
-	return new_header($1, $2)
+	return new_header($1)
 
 	split($0, a, " ")
 	new_header(a[1])
@@ -67,7 +71,7 @@ function trapezi_load(				query, i) {
 	for (i = 1; i <= 3; i++)
 	query = query " `pektis" i "`, `apodoxi" i "`,"
 
-	query = query " `arxio`) VALUES (" \
+	query = query " `poll`, `arxio`) VALUES (" \
 		trapezi ", " \
 		spawk_escape($2) ", " \
 		pektis($3) ", " \
@@ -76,7 +80,8 @@ function trapezi_load(				query, i) {
 		spawk_escape($6) ", " \
 		pektis($7) ", " \
 		spawk_escape($8) ", " \
-		spawk_escape($9) ")"
+		spawk_escape($9) ", " \
+		spawk_escape($10) ")"
 
 	if (spawk_submit(query) != 2)
 	return load_abort()
@@ -218,8 +223,10 @@ function load_commit() {
 
 	commit_work()
 
-	if (verbal)
-	print trapezi
+	if (verbal) {
+		print trapezi
+		fflush()
+	}
 
 	trapezi = 0
 	dianomi = 0
