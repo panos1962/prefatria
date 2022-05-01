@@ -580,7 +580,7 @@ Skiniko.prototype.processKinisiEG = function(data) {
 //	metrita3	Μετρητά παίκτη θέσης 3.
 
 Skiniko.prototype.processKinisiPD = function(data) {
-	var skiniko = this, trapezi, dianomi, kapikia;
+	var skiniko = this, trapezi, dianomi, kapikia, agora;
 
 	trapezi = skiniko.skinikoTrapeziGet(data.trapezi);
 
@@ -631,6 +631,15 @@ Skiniko.prototype.processKinisiPD = function(data) {
 			break;
 		}
 	});
+
+	// Είναι η στιγμή να ενημερώσουμε την απόδοση των παικτών. Ωστόσο,
+	// ελέγχουμε πρώτα την ύπαρξη άσων στην αγορά, καθώς οι αγορές με
+	// άσους δεν μετέχουν στη διαμόρφωση της απόδοσης των παικτών.
+
+	agora = trapezi.partidaAgoraGet();
+
+	if (agora && (agora instanceof Dilosi) && agora.dilosiIsAsoi())
+	return this;
 
 	Prefadoros.thesiWalk(function(thesi) {
 		var pektis, apodosi;
