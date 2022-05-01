@@ -10,13 +10,20 @@ BEGIN {
 	load_func["@energia"] = "energia_load"
 	load_func["@akirosi"] = "akirosi_load"
 
-	# Η global μεταβλητή "trapezi" περιέχει τον κωδικό του προς εισαγωγή
+	# Η global μεταβλητή "trapezi" περιέχει τον κωδικό τού προς εισαγωγή
 	# τραπεζιού και τίθεται από τα data που αφορούν στον πίνακα "trapezi".
 	# Αν η τιμή τής μεταβλητής είναι μηδενική, τότε σημαίνει ότι δεν έχει
 	# καθοριστεί κωδικός τραπεζιού και σ' αυτήν την περίπτωση το input
 	# απλώς απορρίπτεται.
 
 	trapezi = 0
+
+	# Η global μεταβλητή "dianomi" περιέχει τον κωδικό τής προς εισαγωγή
+	# διανομής και τίθεται από τα data που αφορούν στον πίνακα "dianomi".
+	# Αν η τιμή τής μεταβλητής είναι μηδενική, τότε σημαίνει ότι δεν έχει
+	# καθοριστεί κωδικός διανομής και σ' αυτήν την περίπτωση το input
+	# απλώς απορρίπτεται.
+
 	dianomi = 0
 }
 
@@ -30,10 +37,7 @@ END {
 }
 
 function process_header(			tag, n, a) {
-	if (NF > 1)
-	return new_header($1)
-
-	split($0, a, " ")
+	split($0, a, "[ \t]")
 	new_header(a[1])
 }
 
@@ -74,14 +78,14 @@ function trapezi_load(				query, i) {
 	query = query " `poll`, `arxio`) VALUES (" \
 		trapezi ", " \
 		spawk_escape($2) ", " \
-		pektis($3) ", " \
+		val2string($3) ", " \
 		spawk_escape($4) ", " \
-		pektis($5) ", " \
+		val2string($5) ", " \
 		spawk_escape($6) ", " \
-		pektis($7) ", " \
+		val2string($7) ", " \
 		spawk_escape($8) ", " \
 		spawk_escape($9) ", " \
-		spawk_escape($10) ")"
+		val2string($10) ")"
 
 	if (spawk_submit(query) != 2)
 	return load_abort()
@@ -186,7 +190,7 @@ function akirosi_load(				query) {
 	return load_abort()
 }
 
-function pektis(s) {
+function val2string(s) {
 	if (s == spawk_null)
 	return "NULL"
 
@@ -207,14 +211,6 @@ function rollback_work() {
 
 function commit() {
 	spawk_submit("COMMIT WORK")
-}
-
-function oxi_kodikos(x) {
-	if (x ~ /^[ \t]*[0-9]{1,9}[ \t]*$/)
-	return 0
-
-	errmsg(x ": απαράδεκτος κωδικός τραπεζιού")
-	return 1
 }
 
 function load_commit() {

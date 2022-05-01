@@ -114,7 +114,7 @@ function dump_trapezi(x, check,			kodikos, query, trapezi) {
 	if (!spawk_fetchone(trapezi, 0))
 	return errmsg(kodikos ": δεν βρέθηκε το τραπέζι")
 
-	print "@trapezi"
+	print "@trapezi", trapezi[1]
 	print trapezi[0]
 
 	trparam_dump(kodikos)
@@ -151,7 +151,7 @@ function dianomi_dump(trapezi,			query, dianomi) {
 	exit(2)
 
 	while (spawk_fetchrow(dianomi, 0)) {
-		print "@dianomi"
+		print "@dianomi", dianomi[1]
 		print dianomi[0]
 		energia_dump(dianomi[1])
 		akirosi_dump(dianomi[1])
