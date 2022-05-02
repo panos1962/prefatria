@@ -30,17 +30,21 @@
 # Η σειρά εκτύπωσης είναι αύξουσα κατά κωδικό παρτίδας, εκτός και αν δώσουμε
 # την option -r οπότε η σειρά είναι φθίνουσα.
 
-progname="prefadoros::`basename $0`"
+progname="prefadoros::$(basename $0)"
 
-[ -n "${PREFADOROS}" ] || {
-	echo "${progname}: PREFADOROS: environment variable not set" >&2
-	exit 2
-}
+[ -n "${PREFADOROS}" ] || PREFADOROS="/var/opt/prefadoros"
 
 [ -d "${PREFADOROS}" ] || {
 	echo "${progname}: ${PREFADOROS}: directory not found" >&2
 	exit 2
 }
+
+[ -r "${PREFADOROS}" ] || {
+	echo "${progname}: ${PREFADOROS}: cannot read directory" >&2
+	exit 2
+}
+
+export PREFADOROS
 
 usage() {
 	echo "usage: ${progname} [OPTIONS] [παίκτες]
@@ -68,7 +72,7 @@ do
 		ola="yes"
 		;;
 	y)
-		if [ "${OPTARG}" -ne "${OPTARG}" ]; then
+		if [ "${OPTARG}" -ne "${OPTARG}" 2>"/dev/null" ]; then
 			echo "${progname}: ${OPTARG}: λανθασμένο έτος" >&2
 			errs="yes"
 		else
@@ -76,7 +80,7 @@ do
 		fi
 		;;
 	f)
-		if [ "${OPTARG}" -ne "${OPTARG}" ]; then
+		if [ "${OPTARG}" -ne "${OPTARG}" 2>"/dev/null" ]; then
 			echo "${progname}: ${OPTARG}: λανθασμένος μήνας (από)" >&2
 			errs="yes"
 		else
@@ -84,7 +88,7 @@ do
 		fi
 		;;
 	t)
-		if [ "${OPTARG}" -ne "${OPTARG}" ]; then
+		if [ "${OPTARG}" -ne "${OPTARG}" 2>"/dev/null" ]; then
 			echo "${progname}: ${OPTARG}: λανθασμένος μήνας (έως)" >&2
 			errs="yes"
 		else
@@ -95,7 +99,11 @@ do
 		fora="DESC";
 		;;
 	\?)
-		echo "${progname}: ${OPTARG}: invalid option" >&2
+		echo "${progname}: -${OPTARG}: invalid option" >&2
+		errs="yes"
+		;;
+	\:)
+		echo "${progname}: -${OPTARG}: option requires an argument" >&2
 		errs="yes"
 		;;
 	esac
@@ -124,8 +132,14 @@ set -o pipefail
 # Παράγεται SQL query για την επιλογή των παρτίδων με βάση τον χρονικό
 # προσδιορισμό παρτίδων.
 
-awk -v progname="${progname}" -v etos="${etos}" -v apo="${apo}" -v eos="${eos}" \
-	-v ola="${ola}" -v fora="${fora}" -f "${PREFADOROS}/src/trapezi/range.awk" |
+awk \
+-v progname="${progname}" \
+-v etos="${etos}" \
+-v apo="${apo}" \
+-v eos="${eos}" \
+-v ola="${ola}" \
+-v fora="${fora}" \
+-f "${PREFADOROS}/src/trapezi/range.awk" |
 
 # Το SQL query περνάει στον SQL προκειμένου να εκτυπωθούν οι κωδικοί των
 # παρτίδων που πληρούν τους χρονικούς προσδιορισμούς.
