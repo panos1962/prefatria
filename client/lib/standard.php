@@ -29,7 +29,7 @@ define("SUPPORT_EMAIL", "prefadoros@hotmail.com");
 
 // Η συμβολική σταθερά "VIDA" περιέχει το URL της βίδας.
 
-define("VIDA", "http://www.pexevida.gr");
+define("VIDA", "http://opasopa.net/vida");
 
 mb_internal_encoding("UTF-8");
 mb_regex_encoding("UTF-8");
