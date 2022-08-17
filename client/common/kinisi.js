@@ -580,7 +580,7 @@ Skiniko.prototype.processKinisiEG = function(data) {
 //	metrita3	Μετρητά παίκτη θέσης 3.
 
 Skiniko.prototype.processKinisiPD = function(data) {
-	var skiniko = this, trapezi, dianomi, kapikia, agora;
+	var skiniko = this, trapezi, dianomi, kapikia;
 
 	trapezi = skiniko.skinikoTrapeziGet(data.trapezi);
 
@@ -636,10 +636,20 @@ Skiniko.prototype.processKinisiPD = function(data) {
 	// ελέγχουμε πρώτα την ύπαρξη άσων στην αγορά, καθώς οι αγορές με
 	// άσους δεν μετέχουν στη διαμόρφωση της απόδοσης των παικτών.
 
+/*
+XXX
+
+	var agora;
+
+	Έχω ακυρώσει την εξαίρεση για τους άσους στη βαθμολογία.
+
 	agora = trapezi.partidaAgoraGet();
 
 	if (agora && (agora instanceof Dilosi) && agora.dilosiIsAsoi())
 	return this;
+
+XXX
+*/
 
 	Prefadoros.thesiWalk(function(thesi) {
 		var pektis, apodosi;
