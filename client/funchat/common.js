@@ -626,6 +626,14 @@ Funchat.listaPush(new Funchat({
 }));
 
 Funchat.listaPush(new Funchat({
+	img: 'tiEgineRePedia.gif',
+	img2: 'tiEgineRePedia.png',
+	dur: 9000,
+	platos: 180,
+	txt: 'Τι έγινε ρε παιδιά;',
+}));
+
+Funchat.listaPush(new Funchat({
 	img: 'aporiaPokemon.gif',
 	img2: 'aporiaPokemon1.png',
 	dur: 4000,
