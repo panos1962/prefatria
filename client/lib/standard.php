@@ -10,7 +10,15 @@ define("PREFA", "http://prefadoros.gr");
 // «Πρεφαδόρου». Πρόκειται για εξωτερική σελίδα που περιέχει χρήσιμες πληροφορίες
 // και links.
 
-define("KENTRO_IPOSTIRIXIS", "https://sites.google.com/a/prefadoros.net/main/");
+// Παλιότερα είχα σελίδα στο Google sites με μια σύνοψη του παιχνιδιού της πρέφας
+// και του site. Κάποια στιγμή η Google αναμόρφωσε το Google sites οπότε όλη αυτή
+// η προσπάθεια πήγε στράφι, καθώς ήθελε πολλή δουλειά να ξανακάνω το site με τα
+// νέα εργαλεία. Μπορεί στο μέλλον να φτιάξω κάποια σελίδα που να περιλαμβάνει
+// σύντομη περιγραφή του παιχνιδιού και του site. Επί του παρόντος έχω βάλει το
+// link να παραπέμπει στο λήμμα της πρέφας στην Βικιπαίδεια.
+
+#define("KENTRO_IPOSTIRIXIS", "https://sites.google.com/a/prefadoros.net/main/");
+define("KENTRO_IPOSTIRIXIS", "https://el.wikipedia.org/wiki/%CE%A0%CF%81%CE%AD%CF%86%CE%B1");
 
 // Η συμβολική σταθερά "OWNER_ONOMA" περιέχει το ονοματεπώνυμο του κατέχοντος
 // το copyright της εφαρμογής.
