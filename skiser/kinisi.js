@@ -311,7 +311,13 @@ Kinisi.prototype.prosarmogiPK = function(sinedria) {
 	if (!pektis)
 	return false;
 
+	// XXX
+	// Ο κώδικας που ακολουθεί αφορά στο αν θα φαίνονται τα
+	// διακριτικά αξιώματος.
+
+	/*
 	if (pektis.pektisIsVip())
+	*/
 	return this.prosarmogiPKaxioma(sinedria, pektis);
 
 	if (pektis.pektisIsAnergos())
