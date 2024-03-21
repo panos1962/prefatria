@@ -1739,6 +1739,9 @@ Arena.ego.oxiEpidotisi = function() {
 // Δικαίωμα στα διακριτικά ανέργων έχουν και οι άνεργοι.
 
 Arena.ego.emfaniDiakritika = function() {
+	// XXX
+	return true;
+
 	if (Arena.ego.isVip())
 	return true;
 

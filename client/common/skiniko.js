@@ -148,7 +148,10 @@ Pektis.prototype.pektisPeparamWalk = function(callback) {
 
 Pektis.prototype.pektisAxiomaGet = function() {
 	var axioma = this.pektisPeparamGet('ΑΞΙΩΜΑ');
-	if (!axioma) axioma = 'ΘΑΜΩΝΑΣ';
+
+	if (!axioma)
+	axioma = 'ΘΑΜΩΝΑΣ';
+
 	return axioma;
 };
 
