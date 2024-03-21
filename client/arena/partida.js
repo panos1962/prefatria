@@ -889,7 +889,9 @@ Arena.partida.profinfoIconRefreshDOM = function(login, dom) {
 
 	dom.children('.tsoxaProfinfoIcon').remove();
 	pektis = Arena.skiniko.skinikoPektisGet(login);
-	if (!pektis) return Arena.partida;
+
+	if (!pektis)
+	return Arena.partida;
 
 	ikonidio = 'ikona/axioma/thamonas.png';
 	titlos = null;
@@ -902,7 +904,7 @@ Arena.partida.profinfoIconRefreshDOM = function(login, dom) {
 			emfanes = true;
 		}
 
-		else if (Arena.ego.isEpoptis()) {
+		else {
 			switch (titlos = pektis.pektisAxiomaGet()) {
 			case 'ΠΡΟΕΔΡΟΣ':
 				ikonidio = 'ikona/axioma/proedros.png';
