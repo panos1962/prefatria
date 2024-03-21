@@ -840,8 +840,14 @@ jQuery.fn.pektisDiakritikaDOM = function(pektis) {
 			}));
 		}
 
+		// XXX
+		// Ο κώδικας που ακολουθεί αφορά στο αν θα εμφανίζονται
+		// τα διακριτικά αξιώματος.
+
+		/*
 		if (Arena.ego.oxiVip())
 		return;
+		*/
 
 		switch (pektis.pektisAxiomaGet()) {
 		case 'ΠΡΟΕΔΡΟΣ':
