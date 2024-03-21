@@ -840,15 +840,6 @@ jQuery.fn.pektisDiakritikaDOM = function(pektis) {
 			}));
 		}
 
-		// XXX
-		// Ο κώδικας που ακολουθεί αφορά στο αν θα εμφανίζονται
-		// τα διακριτικά αξιώματος.
-
-		/*
-		if (Arena.ego.oxiVip())
-		return;
-		*/
-
 		switch (pektis.pektisAxiomaGet()) {
 		case 'ΠΡΟΕΔΡΟΣ':
 			ikonidio = 'proedros.png';
@@ -1740,6 +1731,8 @@ Arena.ego.oxiEpidotisi = function() {
 
 Arena.ego.emfaniDiakritika = function() {
 	// XXX
+	// Δίνουμε δικαίωμα στα διακριτικά αξιώματος σε όλους.
+
 	return true;
 
 	if (Arena.ego.isVip())
