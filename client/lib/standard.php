@@ -37,7 +37,7 @@ define("SUPPORT_EMAIL", "prefadoros@hotmail.com");
 
 // Η συμβολική σταθερά "VIDA" περιέχει το URL της βίδας.
 
-define("VIDA", "http://opasopa.net/vida");
+define("VIDA", "http://opasopa.gr/vida");
 
 mb_internal_encoding("UTF-8");
 mb_regex_encoding("UTF-8");
@@ -151,8 +151,8 @@ class Globals {
 			self::$server = "http://" . $server_name . "/prefatria/";
 			self::$filajs = "http://" . $server_name . "/filajs/";
 			break;
-		case "www.opasopa.net":
-		case "opasopa.net":
+		case "www.opasopa.gr":
+		case "opasopa.gr":
 		case "www.prefadoros.win":
 		case "prefadoros.win":
 			self::$server = "http://" . $server_name . "/prefa/";
@@ -211,8 +211,8 @@ class Globals {
 		case "http://5.9.24.181/prefadoros/";
 		case "http://prefadoros.gr/":
 		case "http://www.prefadoros.gr/":
-		case "http://opasopa.net/prefa/";
-		case "http://www.opasopa.net/prefa/":
+		case "http://opasopa.gr/prefa/";
+		case "http://www.opasopa.gr/prefa/":
 		case "http://prefadoros.win/prefa/";
 		case "http://www.prefadoros.win/prefa/":
 			break;

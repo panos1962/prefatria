@@ -121,7 +121,7 @@ Funchat.prototype.funchatIxosPlay = function(opts) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////@
 
-Funchat.server = 'http://www.opasopa.net/prefadorosFC/';
+Funchat.server = 'http://opasopa.gr/prefadorosFC/';
 
 Funchat.lista = {};
 Funchat.listaArray = [];
