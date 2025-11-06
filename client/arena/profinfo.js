@@ -367,10 +367,11 @@ Arena.pektisPanelRefreshDOM = function() {
 		else photoDOM.finish().fadeIn(100).data('emfanis', true);
 	}));
 
-	// Οι βαθμοφόροι από επόπτες και άνω έχουν δικαίωμα να δουν το IP οποιουδήποτε
-	// online παίκτη κάνοντας κλικ στο σχετικό εικονίδιο (σταυρόνημα).
+	// Οι βαθμοφόροι από διαχειριστές και άνω έχουν δικαίωμα να δουν την IP
+	// οποιουδήποτε online παίκτη κάνοντας κλικ στο σχετικό εικονίδιο
+	// (σταυρόνημα).
 
-	if (Arena.ego.isEpoptis())
+	if (Arena.ego.isDiaxiristis())
 	Arena.pektisPanelDOM.
 	append(Arena.pektisFormaIplocatorDOM = $('<img>').addClass('pektisPanelIcon').
 	css('display', Arena.pektisFormaEditing ? 'none' : 'inline-block').
