@@ -705,7 +705,7 @@ Funchat.listaPush(new Funchat({
 
 Funchat.listaPush(new Funchat({
 	img: 'kouvas.png',
-	platos: 200,
+	platos: 80,
 }));
 
 Funchat.listaPush(new Funchat({
