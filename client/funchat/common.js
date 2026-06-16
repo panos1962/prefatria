@@ -704,6 +704,11 @@ Funchat.listaPush(new Funchat({
 }));
 
 Funchat.listaPush(new Funchat({
+	img: 'kouvas.png',
+	platos: 200,
+}));
+
+Funchat.listaPush(new Funchat({
 	img: 'ohMyGod.gif',
 	img2: 'ohMyGod1.png',
 	dur: 4000,
