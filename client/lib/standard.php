@@ -471,8 +471,12 @@ class Globals {
 	// περικλείουν, εκτός και αν περάσουμε δεύτερη (false) παράμετρο.
 
 	public static function asfales_sql($s, $string = TRUE) {
-		if (get_magic_quotes_gpc()) $s = stripslashes($s);
-		if (isset(self::$db)) $s = self::$db->real_escape_string($s);
+		if (function_exists('get_magic_quotes_gpc') && get_magic_quotes_gpc())
+		$s = stripslashes($s);
+
+		if (isset(self::$db))
+		$s = self::$db->real_escape_string($s);
+
 		return($string ? "'" . $s . "'" : $s);
 	}
 
