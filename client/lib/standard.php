@@ -160,6 +160,9 @@ class Globals {
 		case "5.9.24.181":
 			self::$server = "http://" . $server_name . "/prefadoros/";
 			break;
+		case "142.132.231.222":
+			self::$server = "http://" . $server_name . "/prefadoros/";
+			break;
 		case "www.prefadoros.gr":
 		case "www.prefadoros.com":
 		case "www.prefadoros.org":
