@@ -153,14 +153,12 @@ class Globals {
 			break;
 		case "www.opasopa.gr":
 		case "opasopa.gr":
-		case "www.prefadoros.win":
-		case "prefadoros.win":
 			self::$server = "http://" . $server_name . "/prefa/";
 			break;
 		case "5.9.24.181":
-			self::$server = "http://" . $server_name . "/prefadoros/";
-			break;
 		case "142.132.231.222":
+		case "www.prefadoros.win":
+		case "prefadoros.win":
 			self::$server = "http://" . $server_name . "/prefadoros/";
 			break;
 		case "www.prefadoros.gr":
