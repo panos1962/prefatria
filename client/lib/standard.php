@@ -206,6 +206,7 @@ class Globals {
 		$dbname = "prefatria";
 		$dbuser = "prefadoros";
 
+/*
 		switch (self::$server) {
 		case "http://127.0.0.1/prefatria/":
 		case "http://localhost/prefatria/";
@@ -222,6 +223,7 @@ class Globals {
 			if (self::$server) self::errmsg(self::$server . ": ");
 			self::klise_fige("unknown server (database)");	
 		}
+*/
 
 		$bekadb = preg_replace("/[^a-zA-Z0-9]/", "", @file_get_contents(self::$www . "misc/.mistiko/bekadb"));
 		self::$db = @new mysqli($dbhost, $dbuser, $bekadb, $dbname);
