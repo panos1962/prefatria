@@ -201,31 +201,15 @@ class Globals {
 	// ανάγκη συνδέσεως με την database.
 
 	public static function database() {
-		if (self::$db) self::klise_fige("database: reconnection");
+		if (self::$db)
+		self::klise_fige("database: reconnection");
+
 		$dbhost = "localhost";
 		$dbname = "prefatria";
 		$dbuser = "prefadoros";
+		$bekadb = preg_replace("/[^a-zA-Z0-9]/", "",
+			@file_get_contents(self::$www . "misc/.mistiko/bekadb"));
 
-/*
-		switch (self::$server) {
-		case "http://127.0.0.1/prefatria/":
-		case "http://localhost/prefatria/";
-		case "http://5.9.24.181/prefadoros/";
-		case "http://prefadoros.gr/":
-		case "http://www.prefadoros.gr/":
-		case "http://opasopa.gr/prefa/";
-		case "http://www.opasopa.gr/prefa/":
-		case "http://prefadoros.win/prefa/";
-		case "http://www.prefadoros.win/prefa/":
-		case "http://142.132.231.222/prefadoros/":
-			break;
-		default:
-			if (self::$server) self::errmsg(self::$server . ": ");
-			self::klise_fige("unknown server (database)");	
-		}
-*/
-
-		$bekadb = preg_replace("/[^a-zA-Z0-9]/", "", @file_get_contents(self::$www . "misc/.mistiko/bekadb"));
 		self::$db = @new mysqli($dbhost, $dbuser, $bekadb, $dbname);
 		self::$db->connect_errno && die("database connection failed (" . self::$db->connect_error . ")");
 		@self::$db->set_charset("utf8mb4") || self::klise_fige("cannot set character set (database)");
