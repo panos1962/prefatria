@@ -151,16 +151,6 @@ class Globals {
 			self::$server = "http://" . $server_name . "/prefatria/";
 			self::$filajs = "http://" . $server_name . "/filajs/";
 			break;
-		case "www.opasopa.gr":
-		case "opasopa.gr":
-			self::$server = "http://" . $server_name . "/prefa/";
-			break;
-		case "5.9.24.181":
-		case "142.132.231.222":
-		case "www.prefadoros.win":
-		case "prefadoros.win":
-			self::$server = "http://" . $server_name . "/prefadoros/";
-			break;
 		case "www.prefadoros.gr":
 		case "www.prefadoros.com":
 		case "www.prefadoros.org":
@@ -169,8 +159,8 @@ class Globals {
 			self::$server = "http://" . $server_name . "/";
 			break;
 		default:
-			if ($server_name) self::errmsg($server_name . ": ");
-			self::klise_fige("unknown server");	
+			self::$server = "http://" . $server_name . "/prefa/";
+			break;
 		}
 
 		// Αν έχουμε κλήση με πρωτόκολλο HTTPS, τότε «γυρνάμε» σε HTTP,
